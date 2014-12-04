@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  date: 2014-12-03 14:35:51
+  homeTeam: MyString
+  awayTeam: MyString
+  predictionGoalsHomeTeam: 1
+  predictionGoalsAwayTeam: 1
+
+two:
+  date: 2014-12-03 14:35:51
+  homeTeam: MyString
+  awayTeam: MyString
+  predictionGoalsHomeTeam: 1
+  predictionGoalsAwayTeam: 1

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  odds: 1.5
+  bookies: MyString
+  stake: 1.5
+  type: 
+  won: false
+  prediction_id: 1
+
+two:
+  odds: 1.5
+  bookies: MyString
+  stake: 1.5
+  type: 
+  won: false
+  prediction_id: 1

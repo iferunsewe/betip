@@ -1,0 +1,19 @@
+%h1 Listing type_of_bets
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @type_of_bets.each do |type_of_bet|
+    %tr
+      %td= type_of_bet.name
+      %td= link_to 'Show', type_of_bet
+      %td= link_to 'Edit', edit_type_of_bet_path(type_of_bet)
+      %td= link_to 'Destroy', type_of_bet, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Type of bet', new_type_of_bet_path

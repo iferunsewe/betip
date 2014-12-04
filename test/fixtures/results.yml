@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  goalsHomeTeam: 1
+  goalsAwayTeam: 1
+  betWon: false
+
+two:
+  goalsHomeTeam: 1
+  goalsAwayTeam: 1
+  betWon: false
