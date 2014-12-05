@@ -13,7 +13,5 @@ class Tip < ActiveRecord::Base
     tip.won == true
   end
 
-  def win_ratio
-    Tip.joins(:user).where({:won => true}, {user_id: u1.id})
-  end
+  
 end

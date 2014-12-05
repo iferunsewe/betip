@@ -27,5 +27,9 @@ class User < ActiveRecord::Base
     end
   end
 
-  
+  def win_ratio(user)
+    tips = user.tips.count.to_f
+    numberOfTipsWon = (Tip.joins(:user).where({:won => true}, {user_id: user.id})).count.to_f
+    winRatio = ((numberOfTipsWon / tips) * 100)
+  end
 end
