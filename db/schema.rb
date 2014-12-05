@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(:version => 20141204103641) do
   create_table "results", :force => true do |t|
     t.integer  "goalsHomeTeam"
     t.integer  "goalsAwayTeam"
+    t.integer  "prediction_id"
     t.boolean  "betWon"
     t.datetime "created_at",    :null => false
     t.datetime "updated_at",    :null => false

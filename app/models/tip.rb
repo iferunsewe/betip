@@ -5,12 +5,15 @@ class Tip < ActiveRecord::Base
   has_many :results, through: :predictions
   belongs_to :user
 
-  def tip_user
-    User.where(tip_id)
+  def tip_won(tip)
+    if tip.predictions.each do |prediction|
+      prediction.result.betWon == true
+    end
+    end
+    tip.won == true
   end
 
-  def tip_won
-
+  def win_ratio
+    Tip.joins(:user).where({:won => true}, {user_id: u1.id})
   end
-
 end

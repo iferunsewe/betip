@@ -1,5 +1,5 @@
 class Result < ActiveRecord::Base
-  attr_accessible :betWon, :goalsAwayTeam, :goalsHomeTeam
+  attr_accessible :betWon, :goalsAwayTeam, :goalsHomeTeam, :prediction_id
 
   belongs_to :prediction
 
@@ -12,25 +12,25 @@ class Result < ActiveRecord::Base
   end
 
   def set_variables_for_result
-    PredictionHomeTeam = Prediction.predictionGoalsHomeTeam
-    PredictionAwayTeam = Prediction.predictionGoalsAwayTeam
-    ResultHomeTeam = self.goalsHomeTeam 
-    ResultAwayTeam = self.goalsAwayTeam
-    PredictionTotalNumberOfGoals = (@PredictionHomeTeam + @PredictionAwayTeam)
-    ResultTotalNumberOfGoals = (@ResultHomeTeam + @ResultAwayTeam)
-    @correctScore = @PredictionHomeTeam == @ResultHomeTeam && @PredictionAwayTeam == @ResultAwayTeam
-    @winHomeTeam = @ResultHomeTeam > @ResultAwayTeam && @PredictionHomeTeam > @PredictionAwayTeam
-    @winAwayTeam = @ResultAwayTeam > @ResultHomeTeam && @PredictionAwayTeam > @PredictionHomeTeam
-    @draw = @PredictionHomeTeam == @PredictionAwayTeam && @ResultHomeTeam == @ResultAwayTeam
-    @bothTeamsToScore = (@PredictionHomeTeam > 0 && @PredictionAwayTeam > 0) && (@ResultHomeTeam > 0 && @ResultAwayTeam > 0)
-    @over0_5 = (@PredictionTotalNumberOfGoals > 0.5) && (@ResultTotalNumberOfGoals > 0.5)
-    @over1_5 = (@PredictionTotalNumberOfGoals > 1.5) && (@ResultTotalNumberOfGoals > 1.5)
-    @over2_5 = (@PredictionTotalNumberOfGoals > 2.5) && (@ResultTotalNumberOfGoals > 2.5)
-    @over3_5 = (@PredictionTotalNumberOfGoals > 3.5) && (@ResultTotalNumberOfGoals > 3.5)
-    @over4_5 = (@PredictionTotalNumberOfGoals > 4.5) && (@ResultTotalNumberOfGoals > 4.5)
-    @over5_5 = (@PredictionTotalNumberOfGoals > 5.5) && (@ResultTotalNumberOfGoals > 5.5)
-    @over6_5 = (@PredictionTotalNumberOfGoals > 6.5) && (@ResultTotalNumberOfGoals > 6.5)
-    @over7_5 = (@PredictionTotalNumberOfGoals > 7.5) && (@ResultTotalNumberOfGoals > 7.5)
+    predictionHomeTeam = Prediction.predictionGoalsHomeTeam
+    predictionAwayTeam = Prediction.predictionGoalsAwayTeam
+    resultHomeTeam = self.goalsHomeTeam 
+    resultAwayTeam = self.goalsAwayTeam
+    predictionTotalNumberOfGoals = (predictionHomeTeam + predictionAwayTeam)
+    resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
+    @correctScore = predictionHomeTeam == resultHomeTeam && predictionAwayTeam == resultAwayTeam
+    @winHomeTeam = resultHomeTeam > resultAwayTeam && predictionHomeTeam > predictionAwayTeam
+    @winAwayTeam = resultAwayTeam > resultHomeTeam && predictionAwayTeam > predictionHomeTeam
+    @draw = predictionHomeTeam == predictionAwayTeam && resultHomeTeam == resultAwayTeam
+    @bothTeamsToScore = (predictionHomeTeam > 0 && predictionAwayTeam > 0) && (resultHomeTeam > 0 && resultAwayTeam > 0)
+    @over0_5 = (predictionTotalNumberOfGoals > 0.5) && (resultTotalNumberOfGoals > 0.5)
+    @over1_5 = (predictionTotalNumberOfGoals > 1.5) && (resultTotalNumberOfGoals > 1.5)
+    @over2_5 = (predictionTotalNumberOfGoals > 2.5) && (resultTotalNumberOfGoals > 2.5)
+    @over3_5 = (predictionTotalNumberOfGoals > 3.5) && (resultTotalNumberOfGoals > 3.5)
+    @over4_5 = (predictionTotalNumberOfGoals > 4.5) && (resultTotalNumberOfGoals > 4.5)
+    @over5_5 = (predictionTotalNumberOfGoals > 5.5) && (resultTotalNumberOfGoals > 5.5)
+    @over6_5 = (predictionTotalNumberOfGoals > 6.5) && (resultTotalNumberOfGoals > 6.5)
+    @over7_5 = (predictionTotalNumberOfGoals > 7.5) && (resultTotalNumberOfGoals > 7.5)
   end
 
   def result_bet(prediction)

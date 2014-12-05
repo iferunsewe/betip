@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :user_image, :prediction_id, :price, :provider, :role, :tip_id, :uid, :win_percentage 
+  attr_accessible :firstname, :lastname, :email, :password, :password_confirmation, :remember_me, :user_image, :prediction_id, :price, :provider, :role, :tip_id, :uid, :win_percentage
 
   #associations to conduct the following relationship between tipsters and their customers
   has_many(:user_connections, :foreign_key => :tipster_id, :dependent => :destroy)
@@ -23,11 +23,9 @@ class User < ActiveRecord::Base
 
   def tip_predictions(user)
     user.tips.each do |tip|
-      tip.predictions
+      puts tip.predictions
     end
   end
 
-  def win_ratio
-
-  end
+  
 end

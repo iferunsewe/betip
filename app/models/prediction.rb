@@ -1,5 +1,5 @@
 class Prediction < ActiveRecord::Base
-  attr_accessible :awayTeam, :date, :homeTeam, :predictionGoalsAwayTeam, :predictionGoalsHomeTeam, :tip_ids, :result_id, :type_of_bet_id, :user_id
+  attr_accessible :awayTeam, :date, :homeTeam, :predictionGoalsAwayTeam, :predictionGoalsHomeTeam, :tip_ids, :type_of_bet_id, :user_id
 
   has_and_belongs_to_many :tips
   has_one :result
@@ -26,7 +26,14 @@ class Prediction < ActiveRecord::Base
     @over7_5 = (@total_number_of_goals > 7.5) && (@typeOfBet.where(name: "Over 7.5 goals"))
   end
 
+  # def correct_prediction
+  #   @predictions = Prediction.all
+  #   @correctPredictions = @predictions.select do |prediction|
+  #     prediction.result.betWon == true
+  #   end
+  # end
+
+
   def fixtures_today
-    
   end
 end
