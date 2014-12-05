@@ -5,10 +5,9 @@
   %thead
     %tr
       %th= model_class.human_attribute_name(:id)
+      %th= model_class.human_attribute_name(:user)
       %th= model_class.human_attribute_name(:odds)
       %th= model_class.human_attribute_name(:bookies)
-      %th= model_class.human_attribute_name(:stake)
-      %th= model_class.human_attribute_name(:type)
       %th= model_class.human_attribute_name(:won)
       %th= model_class.human_attribute_name(:prediction_id)
       %th= model_class.human_attribute_name(:created_at)
@@ -17,10 +16,9 @@
     - @tips.each do |tip|
       %tr
         %td= link_to tip.id, tip_path(tip)
+        %td= link_to tip.user.firstname, user_path(tip.user)
         %td= tip.odds
         %td= tip.bookies
-        %td= tip.stake
-        %td= tip.type
         %td= tip.won
         %td= tip.prediction_id
         %td=l tip.created_at

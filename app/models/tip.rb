@@ -5,6 +5,10 @@ class Tip < ActiveRecord::Base
   has_many :results, through: :predictions
   belongs_to :user
 
+  def tip_user
+    User.where(tip_id)
+  end
+
   def tip_won
 
   end

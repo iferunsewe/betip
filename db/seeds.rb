@@ -1,10 +1,10 @@
-u1 = User.create!(firstname: "Ari", lastname: "Gold", email: "arigold@email.com", password: "password", role: "Tipster", price: 12.00, win_percentage: 95.00)
-u2 = User.create!(firstname: "Vincent", lastname: "Chase", email: "vincentchase@email.com", password: "password", role: "Tipster", price: 5.00, win_percentage: 85.00)
-u3 = User.create!(firstname: "Johnny", lastname: "Drama", email: "johnnydrama@email.com", password: "password", role: "Customer")
-u4 = User.create!(firstname: "Eric", lastname: "Murphy", email: "ericmurphy@email.com", password: "password", role: "Customer")
-
 t1 = Tip.create!(bookies: "Ladbrokes", odds: 6.0, won: true)
 t2 = Tip.create!(bookies: "Betfair", odds: 4.5, won: false)
+
+u1 = User.create!(firstname: "Ari", lastname: "Gold", email: "arigold@email.com", password: "password", role: "Tipster", price: 12.00, win_percentage: 95.00)
+u2 = User.create!(firstname: "Vincent", lastname: "Chase", email: "vincentchase@email.com", password: "password", role: "Tipster", price: 5.00, win_percentage: 85.00, tip_id: t2.id)
+u3 = User.create!(firstname: "Johnny", lastname: "Drama", email: "johnnydrama@email.com", password: "password", role: "Customer")
+u4 = User.create!(firstname: "Eric", lastname: "Murphy", email: "ericmurphy@email.com", password: "password", role: "Customer")
 
 tb1 = TypeOfBet.create!(name: "Home Win")
 tb2 = TypeOfBet.create!(name: "Away Win")
@@ -36,3 +36,6 @@ p6 = Prediction.create!(homeTeam: "Newcastle", awayTeam: "Sunderland", date: Dat
 
 t1.predictions = [p1, p2, p5]
 t2.predictions = [p3, p4, p6]
+
+u1.tips << [t1]
+u2.tips << [t2]

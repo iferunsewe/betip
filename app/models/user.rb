@@ -21,6 +21,12 @@ class User < ActiveRecord::Base
     self.role.to_s == role_to_compare.to_s
   end
 
+  def tip_predictions(user)
+    user.tips.each do |tip|
+      tip.predictions
+    end
+  end
+
   def win_ratio
 
   end
