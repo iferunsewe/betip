@@ -12,6 +12,4 @@ class Tip < ActiveRecord::Base
     end
     tip.won == true
   end
-
-  
 end

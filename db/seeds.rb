@@ -1,7 +1,7 @@
 t1 = Tip.create!(bookies: "Ladbrokes", odds: 6.0, won: true)
 t2 = Tip.create!(bookies: "Bet365", odds: 5.5, won: false)
 t3 = Tip.create!(bookies: "Betfair", odds: 4.5, won: false)
-t4 = Tip.create!(bookies: "888.com", odds: 5.0, won: false)
+t4 = Tip.create!(bookies: "888.com", odds: 5.0, won: true)
 
 u1 = User.create!(firstname: "Ari", lastname: "Gold", email: "arigold@email.com", password: "password", role: "Tipster", price: 12.00, win_percentage: 95.00)
 u2 = User.create!(firstname: "Vincent", lastname: "Chase", email: "vincentchase@email.com", password: "password", role: "Tipster", price: 5.00, win_percentage: 85.00)
@@ -28,6 +28,7 @@ p3 = Prediction.create!(homeTeam: "Manchester United", awayTeam: "Manchester Cit
 p4 = Prediction.create!(homeTeam: "West Brom", awayTeam: "Wolves", date: DateTime.parse("13/01/2015 15:00"), type_of_bet_id: tb2.id)
 p5 = Prediction.create!(homeTeam: "Burley", awayTeam: "Preston", date: DateTime.parse("13/01/2015 15:00"), type_of_bet_id: tb5.id)
 p6 = Prediction.create!(homeTeam: "Newcastle", awayTeam: "Sunderland", date: DateTime.parse("13/01/2015 15:00"), predictionGoalsHomeTeam: 2, predictionGoalsAwayTeam: 2, type_of_bet_id: tb3.id)
+p7 = Prediction.create!(homeTeam: "Real Madrid", awayTeam: "Atletico Madrid", date: DateTime.parse("06/12/2014 19:00"))
 
 r1 = Result.create!(betWon: true, goalsAwayTeam: 2, goalsHomeTeam: 1, prediction_id: p1.id) 
 r2 = Result.create!(betWon: true, goalsAwayTeam: 1, goalsHomeTeam: 1, prediction_id: p2.id) 

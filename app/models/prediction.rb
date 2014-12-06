@@ -1,5 +1,5 @@
 class Prediction < ActiveRecord::Base
-  attr_accessible :awayTeam, :date, :homeTeam, :predictionGoalsAwayTeam, :predictionGoalsHomeTeam, :tip_ids, :type_of_bet_id, :user_id
+  attr_accessible :awayTeam, :date, :homeTeam, :predictionGoalsAwayTeam, :predictionGoalsHomeTeam, :tip_ids, :type_of_bet_id, :user_id, :comment
 
   has_and_belongs_to_many :tips
   has_one :result
@@ -24,16 +24,19 @@ class Prediction < ActiveRecord::Base
     @over5_5 = (@total_number_of_goals > 5.5) && (@typeOfBet.where(name: "Over 5.5 goals"))
     @over6_5 = (@total_number_of_goals > 6.5) && (@typeOfBet.where(name: "Over 6.5 goals"))
     @over7_5 = (@total_number_of_goals > 7.5) && (@typeOfBet.where(name: "Over 7.5 goals"))
+    binding.pry
+    puts "debug"
   end
 
-  # def correct_prediction
-  #   @predictions = Prediction.all
-  #   @correctPredictions = @predictions.select do |prediction|
-  #     prediction.result.betWon == true
-  #   end
-  # end
+  def correct_prediction
+    @predictions = Prediction.all
+    @correctPredictions = @predictions.select do |prediction|
+      prediction.result.betWon == true
+    end
+  end
 
 
   def fixtures_today
+    @fixturesToday = Prediction.where('date BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
   end
 end
