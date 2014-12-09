@@ -16,7 +16,7 @@
     - @tips.each do |tip|
       %tr
         %td= link_to tip.id, tip_path(tip)
-        %td= link_to tip.user.firstname, user_path(tip.user)
+        %td= link_to tip.user.name, user_path(tip.user)
         %td= tip.odds
         %td= tip.bookies
         %td= tip.won

@@ -34,9 +34,4 @@ class Prediction < ActiveRecord::Base
       prediction.result.betWon == true
     end
   end
-
-
-  def fixtures_today
-    @fixturesToday = Prediction.where('date BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
-  end
 end

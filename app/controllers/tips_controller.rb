@@ -4,7 +4,7 @@ class TipsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @tips = Tip.all
+    @tips = Tip.all.to_json(:include => :predictions)
     respond_with(@tips)
   end
 

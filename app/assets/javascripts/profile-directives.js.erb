@@ -1,0 +1,23 @@
+app.directive('leadertable', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('/profile-page/leadertable.html')%>"
+  };
+});
+
+app.directive('tip', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('/profile-page/tip.html')%>"
+  };
+});
+
+app.directive('new-tip', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('/profile-page/new-tip.html')%>"
+  };
+});

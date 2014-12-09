@@ -11,12 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141204103641) do
+ActiveRecord::Schema.define(:version => 20141204103348) do
 
   create_table "predictions", :force => true do |t|
     t.datetime "date"
     t.string   "homeTeam"
     t.string   "awayTeam"
+    t.text     "comment"
     t.integer  "predictionGoalsHomeTeam"
     t.integer  "predictionGoalsAwayTeam"
     t.integer  "type_of_bet_id"
@@ -29,11 +30,6 @@ ActiveRecord::Schema.define(:version => 20141204103641) do
   create_table "predictions_tips", :id => false, :force => true do |t|
     t.integer "prediction_id"
     t.integer "tip_id"
-  end
-
-  create_table "predictions_type_of_bets", :id => false, :force => true do |t|
-    t.integer "prediction_id"
-    t.integer "type_of_bet_id"
   end
 
   create_table "results", :force => true do |t|
@@ -81,8 +77,7 @@ ActiveRecord::Schema.define(:version => 20141204103641) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.string   "firstname"
-    t.string   "lastname"
+    t.string   "name"
     t.float    "win_percentage"
     t.text     "user_image"
     t.float    "price"

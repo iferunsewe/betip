@@ -1,7 +1,12 @@
 Betip::Application.routes.draw do
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+
+  get '/betip/*path'=> "static#index"
+
   resources :type_of_bets
 
-
+  match 'predictions/fixtures_this_week' => 'predictions#fixtures_this_week'
+  
   resources :predictions
 
 
@@ -10,8 +15,7 @@ Betip::Application.routes.draw do
 
   resources :tips
 
-
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}, :controllers => {:registrations => 'users'}
+  match 'users/top_three' => 'users#top_three'
 
   resources :users, :only => [:show, :index]
   # The priority is based upon order of creation:
@@ -63,7 +67,7 @@ Betip::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  root :to => 'tips#index'
+  root :to => 'static#index'
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.

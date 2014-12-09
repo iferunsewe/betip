@@ -35,8 +35,7 @@ class DeviseCreateUsers < ActiveRecord::Migration
       # t.timestamps
 
       #manually added fields
-      t.string :firstname
-      t.string :lastname
+      t.string :name
       t.float :win_percentage
       t.text :user_image
       t.float :price

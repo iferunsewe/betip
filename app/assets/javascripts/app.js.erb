@@ -1,2 +1,40 @@
 var app = angular.module('betipApp', ['ngAnimate', 'ngRoute'])
 
+app.config(function($routeProvider, $locationProvider){
+
+  $routeProvider.when('/home', {
+    controller: 'homeController',
+    templateUrl: "<%= asset_path('home-page/home.html') %>"
+  });
+
+  $routeProvider.when('/users/:id', {
+    controller: 'profileController',
+    templateUrl: "<%= asset_path('profile-page/profile.html') %>"
+  });
+
+  $routeProvider.when('/maketip', {
+    controller: 'homeController',
+    templateUrl: "<%= asset_path('profile-page/new-tip.html') %>"
+  });
+
+  $routeProvider.when('/profile', {
+    controller: 'homeController',
+    templateUrl: "<%= asset_path('profile-page/profile.html') %>"
+  });
+
+  $routeProvider.when('/leadertable', {
+    controller: 'homeController',
+    templateUrl: "<%= asset_path('profile-page/leadertable.html') %>"
+  });
+
+  $routeProvider.when('/tips', {
+    controller: 'tipController',
+    templateUrl: "<%= asset_path('tip-page/tip.html') %>"
+  });
+
+  $routeProvider.otherwise({
+    redirectTo: '/home'
+  });
+
+  $locationProvider.html5Mode(true);
+})

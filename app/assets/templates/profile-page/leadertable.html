@@ -1,0 +1,14 @@
+<h2>Leadertable</h2>
+
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Win Percentage</th>
+    <th>Price</th>
+  </tr>
+  <tr ng-repeat="user in users | orderBy: 'win_percentage' : reverse">
+    <td>{{user.name}}</td>
+    <td>{{user.win_percentage}}</td>
+    <td>{{user.price}}</td>
+  </tr>
+</table>

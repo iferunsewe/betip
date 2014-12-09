@@ -1,7 +1,13 @@
 class UsersController < ApplicationController
+  respond_to :html, :json
+  def new
+  end
+  
   def index
-    @tipster = User.where(role: "Tipster")
-    @customer = User.where(role: "Customer")
+    # @tipster = User.where(role: "Tipster")
+    # @customer = User.where(role: "Customer")
+    @users = User.all.to_json
+    respond_with(@users)
   end
 
   def create
@@ -22,5 +28,10 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
+  end
+
+  def top_three
+    @top_3 = User.order('win_percentage DESC').limit(3)
+    render json: { data: @top_3 }.to_json
   end
 end

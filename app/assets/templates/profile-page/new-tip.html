@@ -1,0 +1,33 @@
+<h2>Make new tips</h2>
+
+<div class="tip-form">
+  <h2>Tip</h2>
+  <div class="betting-slip">
+    
+  </div>
+  <form role="form" ng-submit="makeTip()">
+    <ul>
+      <li >
+        <b>Bookies: </b>
+        <input type="text" ng-model="newTip.bookies">
+      </li>
+      <button type="submit">Submit</button>
+    </ul>
+  </form>
+</div>
+
+<ul>
+  <li ng-repeat="fixture in fixturesThisWeek">
+    <form name="correctScore" ng-submit="addPrediction()">
+      {{ fixture.homeTeam }}<input type="text" ng-model="correctScore.predictionGoalsHomeTeam"> vs 
+      {{ fixture.awayTeam }}<input type="text" ng-model="correctScore.predictionGoalsAwayTeam"> 
+      <section>
+        <label for="typeOfBets_id">Bet Type</label>
+        <select ng-model="prediction.typeOfBets_id">
+          <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
+        </select>
+      </section>
+     <button>Add</button>
+    </form>
+  </li>
+</ul>

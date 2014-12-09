@@ -1,4 +1,5 @@
 class SessionsController < Devise::SessionsController
+  respond_to :json
   def new
   end
 
@@ -10,11 +11,11 @@ class SessionsController < Devise::SessionsController
     else
       flash.now.alert = "Invalid email or password"
       render "new"
-      end
     end
+  end
 
-    def destroy
-      session[:user_id] = nil
-      redirect_to root_url, notice: "Logged out!"
-    end
+  def destroy
+    session[:user_id] = nil
+    redirect_to root_url, notice: "Logged out!"
+  end
 end

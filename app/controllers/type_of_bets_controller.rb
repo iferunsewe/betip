@@ -1,7 +1,7 @@
 class TypeOfBetsController < ApplicationController
   before_filter :set_type_of_bet, only: [:show, :edit, :update, :destroy]
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @type_of_bets = TypeOfBet.all

@@ -11,3 +11,7 @@
  *= require_self
  *= require_tree .
  */
+
+  @import "bourbon";
+  @import "style.css.scss";
+  @import "scaffolds.css.scss";
