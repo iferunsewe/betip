@@ -3,6 +3,8 @@ class TipsController < ApplicationController
 
   respond_to :html, :json
 
+  skip_before_filter :verify_authenticity_token
+
   def index
     @tips = Tip.all.to_json(:include => :predictions)
     respond_with(@tips)
@@ -23,6 +25,12 @@ class TipsController < ApplicationController
   def create
     @tip = Tip.new(params[:tip])
     @tip.save
+    @prediction = Prediction.find(params[:prediction][:fixtureId])
+    @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsHomeTeam]
+    @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsAwayTeam]
+    @prediction.save
+
+    @tip.predictions << @prediction
     respond_with(@tip)
   end
 

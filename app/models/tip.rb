@@ -1,5 +1,5 @@
 class Tip < ActiveRecord::Base
-  attr_accessible :bookies, :odds, :prediction_ids, :stake, :type, :won
+  attr_accessible :bookies, :odds, :prediction_ids, :stake, :type, :won, :user_id
 
   has_and_belongs_to_many :predictions
   has_many :results, through: :predictions

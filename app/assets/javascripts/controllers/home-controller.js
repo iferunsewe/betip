@@ -1,8 +1,7 @@
 app.controller('homeController', function($scope, $routeParams, $http){
   $scope.currentUser = currentUser
   $scope.currentTip = currentTip
-
-  $http.get('')
+  $scope.madePredictions = [];
 
   $http.get('/tips.json').success(function(data){
     $scope.tips = data
@@ -10,49 +9,45 @@ app.controller('homeController', function($scope, $routeParams, $http){
 
   $http.get('/users.json').success(function(data){
     $scope.users = data 
-
   });
 
   $http.get('/users/top_three').success(function(response) {
     $scope.topThree = response.data;
+    $scope.first = response.data[0]
+    $scope.second = response.data[1]
+    $scope.third = response.data[2]
   });
 
   $http.get('/type_of_bets.json').success(function(data){
     $scope.typeOfBets = data
-  })
+  });
 
-  // $http.get('/home/nextfixtures').success(function(response) {
-  //   $scope.nextFixtures = response.data;
-  // });
+  $http.get('/users/followed_tips.json').success(function(data){
+    // console.log(data)
+    $scope.followedTips = data 
+  });
 
-  $scope.currentUser = currentUser.id
+  $scope.makeTip = function(tip){
+    data = {tip: {bookies: tip.bookies, user_id: $scope.currentUser.id}, prediction: $scope.madePredictions[0]}
+    $http.post('/tips.json', data).success(function(data){
 
-  $scope.makeTip = function(){
-    $http.post('/tips.json', {tip: $scope.newTip, user_id: $scope.currentUser}).success(function(tip){
-      $scope.tips.push(tip);
-      $scope.tipForm.$setPristine();
-      // $http.get('/tips.json').success(function(data){
-      //   $scope.tipPredictions = data.predictions
-      // }
     });
+    $scope.predictionForm.$setPristine()
+    $scope.tipForm.$setPristine()
   };
 
   $http.get('/predictions/fixtures_this_week').success(function(response){
-    console.log(response.data)
     $scope.fixturesThisWeek = response.data;
   });
 
-
-
-  $scope.addPrediction = function(prediction){
-    debugger;
-    $http.get('/tips.json').success(function(data){
-      $scope.lastTips = data.last
-      console.log(data.last)
-    });
-    $http.put('/predictions/' + prediction.id + '.json', {prediction: {predictionGoalsHomeTeam: 0, predictionGoalsAwayTeam: 3, tip_ids: $scope.currentTip}}).success(function(data){
-    })  
-    // $http.put('/predictions/' + prediction.id + '.json', {prediction: }).success(function(data){
-    // }) 
-  };
+  //Updating the scores the dependent of on the type of bet id
+  $scope.addPrediction = function(prediction, fixtureId) {
+    // $scope.predictionForm.$setPristine();
+    data = {};
+    data.fixtureId = fixtureId;
+    data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId];
+    data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId];
+    data.typeOfBet = prediction.typeOfBetId[fixtureId];
+    $scope.madePredictions.push(data);
+  }
 });

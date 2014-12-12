@@ -1,4 +1,20 @@
-<h2>Followed tips</h2>
+<div>
+  <h2>Followed tips</h2>
+  <table class="table table-bordered" ng-repeat="prediction in followedTips">
+    <tr>
+      <th>Date</th>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Prediction</th>
+    </tr>
 
 
-
+    <tr ng-repeat="p in prediction | limitTo : 10">
+        <td>{{p.date | date : format : "medium"}}</td>
+        <td>{{p.homeTeam}}</td>
+        <td>{{ p.awayTeam }}</td>
+        <td>{{p.type_of_bet_name}}</td>
+    </tr>
+  </div>
+  </table>
+</div>

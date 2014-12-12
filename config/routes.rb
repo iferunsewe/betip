@@ -2,7 +2,7 @@ Betip::Application.routes.draw do
   devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
 
   get '/betip/*path'=> "static#index"
-
+  
   resources :type_of_bets
 
   match 'predictions/fixtures_this_week' => 'predictions#fixtures_this_week'
@@ -12,12 +12,23 @@ Betip::Application.routes.draw do
 
   resources :results
 
+  match 'users/profile_predictions' => 'users#profile_predictions'
+
+  match 'users/profile_tips' => 'users#profile_tips'
 
   resources :tips
 
   match 'users/top_three' => 'users#top_three'
 
+  match 'users/followed_tips' => 'users#followed_tips'
+
+  match 'users/users_profile/:id' => 'users#users_profile'
+
   resources :users, :only => [:show, :index]
+
+  match 'user_connections/subscription_requests' => 'user_connections#subscription_requests'
+
+  resources :user_connections
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

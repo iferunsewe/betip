@@ -13,20 +13,20 @@
 
   <% if current_user %>
     <%= render "layouts/navbar/navloggedin" %>
+      <div ng-view class="inner-body"></div>
   <% else %>
     <%= render "layouts/navbar/navlogin" %>
-    <h1>Welcome to Betip</h1>
-    <p>How does it work?</p>
+    <h1 class="welcome-page-h1">Betip</h1>
+    <h4 class="welcome-page-h4">How does it work?<h4>
   <%end %>
 
-  <% if user_signed_in? %>
-    <div ng-view></div>
-  <% end %>
-<% if current_user.present? %>
-  <%= javascript_tag do %>
-    var currentUser = <%= raw current_user.to_json %>
-    
-      var currentTip = <%= raw Tip.last.to_json %>
+
+
+  <% if current_user.present? %>
+    <%= javascript_tag do %>
+        var currentUser = <%= raw current_user.to_json %>
+        var currentTip = <%= raw Tip.last.to_json %>
+        var tipsters = <%= raw User.where(role: "Tipster").to_json %>
     <% end %> 
   <% end %>
 

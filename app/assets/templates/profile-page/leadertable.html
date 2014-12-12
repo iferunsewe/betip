@@ -1,14 +1,20 @@
 <h2>Leadertable</h2>
 
-<table>
+<table class="table table-hover">
   <tr>
     <th>Name</th>
     <th>Win Percentage</th>
     <th>Price</th>
+    <th>Follow</th>
   </tr>
-  <tr ng-repeat="user in users | orderBy: 'win_percentage' : reverse">
-    <td>{{user.name}}</td>
-    <td>{{user.win_percentage}}</td>
-    <td>{{user.price}}</td>
+  <tr ng-repeat="tipster in tipsters | orderBy: 'win_percentage': reverse=true">
+    <td><a href="/betip/profile/{{tipster.id}}">{{tipster.name}}</a></td>
+    <td>{{tipster.win_percentage}}</td>
+    <td>{{tipster.price | currency:'£' }}</td>
+    <div>
+      <td><button ng-class="{hidden: tipster === selectedUser }" 
+        ng-click="subscribeTips(tipster); selectUser(tipster)" 
+        class="btn btn-success">Follow</button></td>
+    </div>
   </tr>
 </table>

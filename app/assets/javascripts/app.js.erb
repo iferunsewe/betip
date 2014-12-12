@@ -17,13 +17,18 @@ app.config(function($routeProvider, $locationProvider){
     templateUrl: "<%= asset_path('profile-page/new-tip.html') %>"
   });
 
-  $routeProvider.when('/profile', {
-    controller: 'homeController',
+  $routeProvider.when('/current-user-profile', {
+    controller: 'profileController',
+    templateUrl: "<%= asset_path('profile-page/current-user-profile.html') %>"
+  });
+
+  $routeProvider.when('/profile/:id', {
+    controller: 'profileController',
     templateUrl: "<%= asset_path('profile-page/profile.html') %>"
   });
 
   $routeProvider.when('/leadertable', {
-    controller: 'homeController',
+    controller: 'profileController',
     templateUrl: "<%= asset_path('profile-page/leadertable.html') %>"
   });
 

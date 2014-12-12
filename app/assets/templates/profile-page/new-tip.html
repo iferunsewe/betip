@@ -1,33 +1,52 @@
-<h2>Make new tips</h2>
+<h2>Make a tip</h2>
 
 <div class="tip-form">
   <h2>Tip</h2>
   <div class="betting-slip">
     
   </div>
-  <form role="form" ng-submit="makeTip()">
+  <form name="tipForm" role="form" ng-submit="makeTip(tip)">
     <ul>
-      <li >
-        <b>Bookies: </b>
-        <input type="text" ng-model="newTip.bookies">
+      <li>
+        <label for="Bookies">Bookies:</label>
+        <input type="text" ng-model="tip.bookies" class="form-control">
       </li>
-      <button type="submit">Submit</button>
+      <button type="submit" class="btn btn-default">Submit</button>
     </ul>
+    <div class="made-predictions" ng-repeat="prediction in madePredictions">
+      <ul>
+        <li>
+          Home score: {{ prediction.predictionGoalsHomeTeam }}
+          Away score: {{ prediction.predictionGoalsAwayTeam }}
+          Type of bet: {{ prediction.typeOfBet }}
+        </li>
+      </ul>
+    </div> 
   </form>
 </div>
 
-<ul>
-  <li ng-repeat="fixture in fixturesThisWeek">
-    <form name="correctScore" ng-submit="addPrediction()">
-      {{ fixture.homeTeam }}<input type="text" ng-model="correctScore.predictionGoalsHomeTeam"> vs 
-      {{ fixture.awayTeam }}<input type="text" ng-model="correctScore.predictionGoalsAwayTeam"> 
-      <section>
-        <label for="typeOfBets_id">Bet Type</label>
-        <select ng-model="prediction.typeOfBets_id">
-          <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
-        </select>
-      </section>
-     <button>Add</button>
-    </form>
-  </li>
+<ul class="fixtures-for-tip">
+  <!-- <div ng-repeat="(i, fixture) in fixturesThisWeek track by $index"> -->
+  <!-- Maybe not a form, maybe a repeated input  -->
+  <form name="predictionForm" ng-repeat="fixture in fixturesThisWeek track by fixture.id" ng-submit="addPrediction(predictions, fixture.id); predictionForm.$setPristine " class="form-group">
+    <br />
+    <!-- submitting to addPrediction function which takes in 2 parameters(predictions, fixture.id which we're getting from each individual fixture in fixtureThisWeek) -->
+    <!-- Each fixture is tracked by the fixture id -->
+    <section class="add-prediction">
+      <label for="homeTeam Score">{{ fixture.homeTeam }}</label>
+      <input type="number" ng-model="predictions.scores.predictionGoalsHomeTeam[fixture.id]" class="form-control input-number"> vs 
+      <label for="awayTeam Score">{{ fixture.awayTeam }}</label>
+      <input type="number" ng-model="predictions.scores.predictionGoalsAwayTeam[fixture.id]" class="form-control input-number"> 
+    </section>
+    <section="bet-type">
+      <label for="typeOfBets_id">Bet Type</label>
+      <select ng-model="predictions.typeOfBetId[fixture.id]" class="select-bet-type">
+        <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
+      </select>
+    </section>
+   <button class="btn btn-default add-button">Add</button>
+  </form>
 </ul>
+
+<h5>Score inputs only appear if you select correct score or make an error if they try to choose it</h5>
+<h5>Make tip form appear/dissappear based on when you add prediction</h5>

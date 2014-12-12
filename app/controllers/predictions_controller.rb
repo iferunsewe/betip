@@ -33,15 +33,17 @@ class PredictionsController < ApplicationController
   end
 
   def create
+
     @prediction = Prediction.new(params[:prediction])
+
     @prediction.save
     respond_with(@prediction)
   end
 
   def update
+    binding.pry
     @prediction = Prediction.find(params[:id])
     @prediction.update_attributes(params[:prediction])
-    binding.pry
     respond_with(@prediction)
   end
 

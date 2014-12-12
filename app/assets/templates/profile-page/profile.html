@@ -1,1 +1,18 @@
-<h2>Profile page</h2>
+<div class="profile-page">
+
+  <h2>{{userProfile.data.name}}</h2>
+
+  
+  <img src="{{userProfile.data.user_image.thumb.url}}">
+
+  <h5><b>Win Percentage:   </b>{{userProfile.data.win_percentage}}%</h5>
+    
+
+  <h5><b>Price:    {{ userProfile.data.price | currency:'£' }}</b></h5>
+
+  <h5>Tips</h5>
+  <ul>
+    <li ng-repeat="tip in userTips">{{tip.bookies}}</li>
+    <li ng-repeat="prediction in userPredictions"><b>{{prediction.homeTeam}}: vs {{prediction.awayTeam}}:</b> Home Win</li>
+  </ul>
+</div>  
