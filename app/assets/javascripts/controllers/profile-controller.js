@@ -4,14 +4,18 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   $scope.followingDefault = false
 
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
-    
+    console.log(data)
     $scope.userProfile = data
     $http.post('/users/profile_tips.json', {tip:{ user_id: data.data.id}}).success(function(data){
+      console.log(data)
       $scope.userTips = data
       $http.post('/users/profile_predictions.json', {predictions:{ tip_id: data.data.id}}).success(function(data){
         console.log(data.data)
         $scope.userPredictions = data
-            });
+        });
+        // $http.post('/users/profile_type_of_bet.json', {type_of_bet: type_of_bet_id}).success(function(data){
+        //   $scope.userTypeOfBet = data
+        // });
     });
   });
 

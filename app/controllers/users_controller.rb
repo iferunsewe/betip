@@ -59,7 +59,6 @@ class UsersController < ApplicationController
 
   def profile_tips
     @userTips = Tip.find(params[:tip][:user_id])
-
     render json: { data: @userTips }.to_json
   end
 
@@ -67,4 +66,10 @@ class UsersController < ApplicationController
     @userPredictions = Prediction.find(params[:predictions][:tip_id])
     render json: { data: @userPredictions }.to_json
   end
+
+  # def profile_type_of_bet
+  #   binding.pry
+  #   @userTypeOfBet = TypeOfBet.find(params[])
+  #   render json: { data: @userTypeOfBet }.to_json
+  # end
 end

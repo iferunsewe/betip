@@ -12,6 +12,8 @@ Betip::Application.routes.draw do
 
   resources :results
 
+  # match 'users/profile_type_of_bet' => 'users#profile_type_of_bet'
+
   match 'users/profile_predictions' => 'users#profile_predictions'
 
   match 'users/profile_tips' => 'users#profile_tips'
