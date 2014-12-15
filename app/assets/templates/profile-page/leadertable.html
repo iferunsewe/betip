@@ -9,7 +9,7 @@
   </tr>
   <tr ng-repeat="tipster in tipsters | orderBy: 'win_percentage': reverse=true">
     <td><a href="/betip/profile/{{tipster.id}}">{{tipster.name}}</a></td>
-    <td>{{tipster.win_percentage}}</td>
+    <td>{{tipster.win_percentage}}%</td>
     <td>{{tipster.price | currency:'£' }}</td>
     <div>
       <td><button ng-class="{hidden: tipster === selectedUser }" 

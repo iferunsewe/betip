@@ -39,7 +39,7 @@ gem 'less-rails'
 gem 'rmagick'
 gem 'bourbon'
 gem 'angularjs-rails'
-gem 'rails_12factor', group: :production
+gem 'rails_12factor'
 #------------------------------------------------------------------------------------
 
 
