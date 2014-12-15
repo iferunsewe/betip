@@ -1,4 +1,4 @@
-app.controller('profileController', function($scope, $routeParams, $http){
+app.controller('profileController', ['$scope','$routeParams','$http', function($scope, $routeParams, $http){
   $scope.tipsters = tipsters
   $scope.currentUser = currentUser
   $scope.followingDefault = false
@@ -58,4 +58,4 @@ app.controller('profileController', function($scope, $routeParams, $http){
   $scope.selectUser = function(user) {
     $scope.selectedUser = user;
   };
-});
+}]);

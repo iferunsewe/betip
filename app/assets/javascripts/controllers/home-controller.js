@@ -1,4 +1,4 @@
-app.controller('homeController', function($scope, $routeParams, $http){
+app.controller('homeController', ['$scope','$routeParams','$http', function($scope, $routeParams, $http){
   $scope.currentUser = currentUser
   $scope.currentTip = currentTip
   $scope.madePredictions = [];
@@ -50,4 +50,4 @@ app.controller('homeController', function($scope, $routeParams, $http){
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
     $scope.madePredictions.push(data);
   }
-});
+}]);
