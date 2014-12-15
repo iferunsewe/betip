@@ -3,6 +3,8 @@ Betip::Application.routes.draw do
 
   get '/betip/*path'=> "static#index"
   
+  match 'users/profile_type_of_bet' => 'users#profile_type_of_bet'
+
   resources :type_of_bets
 
   match 'predictions/fixtures_this_week' => 'predictions#fixtures_this_week'
@@ -11,8 +13,6 @@ Betip::Application.routes.draw do
 
 
   resources :results
-
-  # match 'users/profile_type_of_bet' => 'users#profile_type_of_bet'
 
   match 'users/profile_predictions' => 'users#profile_predictions'
 
