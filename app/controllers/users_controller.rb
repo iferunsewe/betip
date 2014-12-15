@@ -67,9 +67,8 @@ class UsersController < ApplicationController
     render json: { data: @userPredictions }.to_json
   end
 
-  # def profile_type_of_bet
-  #   binding.pry
-  #   @userTypeOfBet = TypeOfBet.find(params[])
-  #   render json: { data: @userTypeOfBet }.to_json
-  # end
+  def profile_type_of_bet
+    @userTypeOfBet = TypeOfBet.find(params[:type][:type_of_bet_id])
+    render json: { data: @userTypeOfBet }.to_json
+  end
 end
