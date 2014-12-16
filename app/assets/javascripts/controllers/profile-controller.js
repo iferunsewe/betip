@@ -25,14 +25,16 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
 
   //get method to get all of the user connections for a subscription request
   $http.get('/user_connections/subscription_requests').success(function(response){
-    // console.log(response)
     $scope.follower = response.data; 
   });
 
   //posting all of the info for a user connection
   $scope.subscribeTips = function(tipster){
     $http.post('/user_connections.json', {user_connection: {tipster_id: tipster.id, tipster_name: tipster.name, customer_id: $scope.currentUser.id, customer_name: $scope.currentUser.name, following: $scope.followingDefault}}).success(function(data){
-      $scope.pendingFollowing = data.following
+      $http.get('/user_connections.json').success(function(response){
+        console.log(response)
+        $scope.pending = response;
+      })
     });
   }
 
@@ -57,7 +59,9 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
     });
   };
 
-  $scope.selectUser = function(user) {
-    $scope.selectedUser = user;
-  };
+  // $scope.selectUser = function(user) {
+  //   $scope.selectedUser = user;
+  // };
+
+
 }]);

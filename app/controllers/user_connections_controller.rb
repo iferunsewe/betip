@@ -4,6 +4,16 @@ class UserConnectionsController < ApplicationController
 
   respond_to :html, :json
 
+  def index
+    @connections = UserConnection.all
+    respond_with(@connections)
+  end
+
+  def show
+    @connection = UserConnection.find(params[:id])
+    respond_with(@connection)
+  end
+
   def create
     @connections = UserConnection.new
     params1 = params[:user_connection]

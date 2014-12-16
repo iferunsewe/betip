@@ -12,9 +12,9 @@
     <td>{{tipster.win_percentage}}%</td>
     <td>{{tipster.price | currency:'£' }}</td>
     <div>
-      <td><button ng-class="{hidden: tipster === selectedUser }" 
-        ng-click="subscribeTips(tipster); selectUser(tipster)" 
-        class="btn btn-success">Follow</button></td>
+      <td><button 
+        ng-click="subscribeTips(tipster)"
+        class="btn btn-success">Follow</button><p ng-if="pending.following == false">Pending</p></td>
     </div>
   </tr>
 </table>
