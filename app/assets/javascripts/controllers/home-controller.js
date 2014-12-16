@@ -11,6 +11,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
     $scope.users = data 
   });
 
+  //getting the top three tipsters on the website 
   $http.get('/users/top_three').success(function(response) {
     $scope.topThree = response.data;
     $scope.first = response.data[0]
@@ -22,20 +23,19 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
     $scope.typeOfBets = data
   });
 
+  //using controller action 'followed tips' to get the tips of a tipster that a customer follows
   $http.get('/users/followed_tips.json').success(function(data){
-    // console.log(data)
     $scope.followedTips = data 
   });
+
 
   $scope.makeTip = function(tip){
     data = {tip: {bookies: tip.bookies, user_id: $scope.currentUser.id}, prediction: $scope.madePredictions[0]}
     $http.post('/tips.json', data).success(function(data){
-
     });
     $scope.predictionForm.$setPristine()
     $scope.tipForm.$setPristine()
   };
-
   $http.get('/predictions/fixtures_this_week').success(function(response){
     $scope.fixturesThisWeek = response.data;
   });
