@@ -14,7 +14,7 @@
     <div>
       <td><button 
         ng-click="subscribeTips(tipster)"
-        class="btn btn-success">Follow</button><p ng-if="pending.following == false">Pending</p></td>
+        class="btn btn-success ">Follow</button><p ng-if="tipster.id == pending.tipster_id && pending.following == false">Pending</p></td>
     </div>
   </tr>
 </table>

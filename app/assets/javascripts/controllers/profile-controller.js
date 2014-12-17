@@ -33,7 +33,7 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
     $http.post('/user_connections.json', {user_connection: {tipster_id: tipster.id, tipster_name: tipster.name, customer_id: $scope.currentUser.id, customer_name: $scope.currentUser.name, following: $scope.followingDefault}}).success(function(data){
       $http.get('/user_connections.json').success(function(response){
         console.log(response)
-        $scope.pending = response;
+        $scope.pending = response[0];
       })
     });
   }
