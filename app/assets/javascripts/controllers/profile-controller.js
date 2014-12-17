@@ -1,5 +1,6 @@
 app.controller('profileController', ['$scope','$routeParams','$http', function($scope, $routeParams, $http){
   $scope.tipsters = tipsters
+  console.log(tipsters)
   $scope.currentUser = currentUser
   $scope.followingDefault = false
 
@@ -30,10 +31,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   //posting all of the info for a user connection
   $scope.subscribeTips = function(tipster){
     $http.post('/user_connections.json', {user_connection: {tipster_id: tipster.id, tipster_name: tipster.name, customer_id: $scope.currentUser.id, customer_name: $scope.currentUser.name, following: $scope.followingDefault}}).success(function(data){
-      $http.post('/user_connections/followed_tipster', {tipster: {tipster_id: tipster.id}}).success(function(response){
+      console.log(data)
+      $http.get('/user_connections/' + tipster.id + '.json').success(function(response){
         console.log(response)
-        $scope.pending = response.data;
-      })
+        $scope.pending = response
+      });
     });
   }
 
@@ -61,6 +63,4 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   // $scope.selectUser = function(user) {
   //   $scope.selectedUser = user;
   // };
-
-
 }]);
