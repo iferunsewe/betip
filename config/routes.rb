@@ -19,6 +19,8 @@ Betip::Application.routes.draw do
   match 'users/profile_tips' => 'users#profile_tips'
 
   resources :tips
+  
+  match 'users/tipsters' => 'users#tipsters'
 
   match 'users/top_three' => 'users#top_three'
 

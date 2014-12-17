@@ -1,7 +1,12 @@
 app.controller('profileController', ['$scope','$routeParams','$http', function($scope, $routeParams, $http){
-  $scope.tipsters = tipsters
+  // $scope.tipsters = tipsters
   $scope.currentUser = currentUser
   $scope.followingDefault = false
+
+  $http.get('/users/tipsters').success(function(data) {
+    console.log(data)
+    $scope.tipsters = angular.fromJson(data.data)
+  })
 
 //getting all of the info for the users profile page, have to delve even deeper to get their tips, the predictions on the tip and the type of bet of the prediction.
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
@@ -32,7 +37,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
     $http.post('/user_connections.json', {user_connection: {tipster_id: tipster.id, tipster_name: tipster.name, customer_id: $scope.currentUser.id, customer_name: $scope.currentUser.name, following: $scope.followingDefault}}).success(function(data){
       $http.post('/user_connections/followed_tipster', {tipster: {tipster_id: tipster.id}}).success(function(response){
         console.log(response)
-        $scope.pending = response.data;
+        $scope.pending = response.data[0];
+        $http.get('/users/tipsters').success(function(data) {
+          console.log(data)
+          $scope.tipsters = angular.fromJson(data.data)
+        })
       })
     });
   }
