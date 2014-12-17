@@ -1,11 +1,3 @@
-app.directive('leadertable', function(){
-  return {
-    restrict: 'E',
-    replace: true,
-    templateUrl: "<%= asset_path('/profile-page/leadertable.html')%>"
-  };
-});
-
 app.directive('tip', function(){
   return {
     restrict: 'E',
@@ -14,10 +6,10 @@ app.directive('tip', function(){
   };
 });
 
-app.directive('new-tip', function(){
+app.directive('submittedTip', function(){
   return {
     restrict: 'E',
     replace: true,
-    templateUrl: "<%= asset_path('/profile-page/new-tip.html')%>"
+    templateUrl: "<%= asset_path('profile-page/submitted-tip.html')%>"
   };
 });

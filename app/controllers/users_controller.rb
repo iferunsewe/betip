@@ -51,7 +51,7 @@ class UsersController < ApplicationController
   end
   
   def tipsters
-    @tipsters = User.where(role: "Tipster").to_json(:include => :user_connections) 
+    @tipsters = User.where(role: "Tipster").to_json(:include => :user_connections)# the include is needed for the following button
     render json: { data: @tipsters }
   end
 

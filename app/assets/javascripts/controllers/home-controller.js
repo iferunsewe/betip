@@ -30,11 +30,16 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
 
   $scope.makeTip = function(tip){
-    data = {tip: {bookies: tip.bookies, user_id: $scope.currentUser.id}, prediction: $scope.madePredictions[0]}
+    data = {
+      "tip" => { 
+        bookies: tip.bookies, 
+        user_id: $scope.currentUser.id
+      }, 
+      "prediction" => $scope.madePredictions
+    }
     $http.post('/tips.json', data).success(function(data){
+      console.log(data)
     });
-    $scope.predictionForm.$setPristine()
-    $scope.tipForm.$setPristine()
   };
   $http.get('/predictions/fixtures_this_week').success(function(response){
     $scope.fixturesThisWeek = response.data;
@@ -42,12 +47,12 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //Updating the scores the dependent of on the type of bet id
   $scope.addPrediction = function(prediction, fixtureId) {
-    // $scope.predictionForm.$setPristine();
     data = {};
     data.fixtureId = fixtureId;
     data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId];
     data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId];
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
     $scope.madePredictions.push(data);
+    console.log($scope.madePredictions)
   }
 }]);
