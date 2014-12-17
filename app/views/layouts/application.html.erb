@@ -26,7 +26,7 @@
     <%= javascript_tag do %>
         var currentUser = <%= raw current_user.to_json %>
         var currentTip = <%= raw Tip.last.to_json %>
-        var tipsters = <%= raw User.where(role: "Tipster").to_json %>
+        var tipsters = <%= raw User.where(role: "Tipster").to_json(:include => :user_connections) %>
     <% end %> 
   <% end %>
 
