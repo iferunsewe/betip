@@ -33,10 +33,11 @@ class UserConnectionsController < ApplicationController
     render json: { data: @subscriptionRequests }.to_json
   end
 
-  # def followed_tipster
-  #   @followed_tipster = UserConnection.where(tipster_id: params[:tipster][:tipster_id])
-  #   render json: { data: @followed_tipster }.to_json
-  # end
+  def followed_tipster
+    # @followed_tipster = UserConnection.where(following: false)
+    @followed_tipster = UserConnection.where(tipster_id: params[:tipster][:tipster_id])
+    render json: { data: @followed_tipster }.to_json
+  end
 
   def update
     @connection = UserConnection.find(params[:id])

@@ -19,6 +19,8 @@ Betip::Application.routes.draw do
   match 'users/profile_tips' => 'users#profile_tips'
 
   resources :tips
+  
+  match 'users/tipsters' => 'users#tipsters'
 
   match 'users/top_three' => 'users#top_three'
 
@@ -29,7 +31,7 @@ Betip::Application.routes.draw do
   resources :users, :only => [:show, :index]
 
   match 'user_connections/subscription_requests' => 'user_connections#subscription_requests'
-  # match 'user_connections/followed_tipster' => 'user_connections#followed_tipster'
+  match 'user_connections/followed_tipster' => 'user_connections#followed_tipster'
   
   resources :user_connections
   # The priority is based upon order of creation:

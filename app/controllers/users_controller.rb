@@ -50,7 +50,10 @@ class UsersController < ApplicationController
     render json: { data: @followedTips }.to_json
   end
   
-  
+  def tipsters
+    @tipsters = User.where(role: "Tipster").to_json(:include => :user_connections) 
+    render json: { data: @tipsters }
+  end
 
   def users_profile
     @usersProfile = User.find(params[:id])
