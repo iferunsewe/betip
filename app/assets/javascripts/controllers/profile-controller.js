@@ -11,7 +11,6 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
       $http.post('/users/profile_predictions.json', {predictions:{ tip_id: data.data.id}}).success(function(data){
         $scope.userPredictions = data
         $http.post('/users/profile_type_of_bet.json', {type: {type_of_bet_id: data.data.type_of_bet_id}}).success(function(data){
-          console.log(data)
           $scope.userTypeOfBet = data
         });
       });
@@ -31,9 +30,9 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   //posting all of the info for a user connection
   $scope.subscribeTips = function(tipster){
     $http.post('/user_connections.json', {user_connection: {tipster_id: tipster.id, tipster_name: tipster.name, customer_id: $scope.currentUser.id, customer_name: $scope.currentUser.name, following: $scope.followingDefault}}).success(function(data){
-      $http.get('/user_connections.json').success(function(response){
+      $http.post('/user_connections/followed_tipster', {tipster: {tipster_id: tipster.id}}).success(function(response){
         console.log(response)
-        $scope.pending = response[0];
+        $scope.pending = response.data;
       })
     });
   }
