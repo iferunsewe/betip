@@ -3,6 +3,8 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   $scope.currentUser = currentUser
   $scope.followingDefault = false
 
+
+//getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
   $http.get('/users/tipsters').success(function(data) {
     console.log(data)
     $scope.tipsters = angular.fromJson(data.data)
