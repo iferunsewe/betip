@@ -53,6 +53,5 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
     data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId];
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
     $scope.madePredictions.push(data);
-    console.log($scope.madePredictions)
   }
 }]);
