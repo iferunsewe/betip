@@ -5,6 +5,8 @@ class Tip < ActiveRecord::Base
   has_many :results, through: :predictions
   belongs_to :user
 
+  accepts_nested_attributes_for :predictions
+
   def tip_won(tip)
     if tip.predictions.each do |prediction|
       prediction.result.betWon == true

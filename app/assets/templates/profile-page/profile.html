@@ -16,4 +16,15 @@
     <li ng-repeat="prediction in userPredictions"><b>{{prediction.homeTeam}}: vs {{prediction.awayTeam}}:</b> </li>
     <li ng-repeat="typeOfBet in userTypeOfBet">{{typeOfBet.name}}</li>
   </ul>
+
+  <div ng-if="userProfile.data.id == currentUser.id">
+    <h3>Subscription Requests</h3>
+    <div ng-repeat="f in follower">
+      <div ng-if="f.following == false">
+        <p>{{f.customer_name}}</p>
+        <button ng-click="acceptSubscription(f)" class="btn btn-success">Accept</button>
+        <button ng-click="rejectSubscription(f)" class="btn btn-danger">Reject</button>
+      </div>
+    </div>
+  </div>
 </div>  

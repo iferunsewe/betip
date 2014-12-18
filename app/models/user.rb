@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   has_many :predictions
   has_many :providers, dependent: :destroy
 
+  accepts_nested_attributes_for :tips
+
   mount_uploader :user_image, UserImageUploader
 
   def role?(role_to_compare)

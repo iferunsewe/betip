@@ -29,7 +29,6 @@ class TipsController < ApplicationController
     @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsHomeTeam]
     @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsAwayTeam]
     @prediction.save
-
     @tip.predictions << @prediction
     respond_with(@tip)
   end

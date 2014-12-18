@@ -13,7 +13,6 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //getting the top three tipsters on the website 
   $http.get('/users/top_three').success(function(response) {
-    $scope.topThree = response.data;
     $scope.first = response.data[0]
     $scope.second = response.data[1]
     $scope.third = response.data[2]
@@ -31,16 +30,17 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   $scope.makeTip = function(tip){
     data = {
-      "tip" => { 
+      tip: { 
         bookies: tip.bookies, 
         user_id: $scope.currentUser.id
       }, 
-      "prediction" => $scope.madePredictions
-    }
+      prediction: $scope.madePredictions
+    },
     $http.post('/tips.json', data).success(function(data){
       console.log(data)
     });
   };
+  
   $http.get('/predictions/fixtures_this_week').success(function(response){
     $scope.fixturesThisWeek = response.data;
   });

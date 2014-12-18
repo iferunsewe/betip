@@ -24,7 +24,7 @@
 
   <% if current_user.present? %>
     <%= javascript_tag do %>
-        var currentUser = <%= raw current_user.to_json %>
+        var currentUser = <%= raw current_user.to_json({:include => {:tips => {:include => {:predictions => {:methods => [:awayTeam, :date, :homeTeam, :predictionGoalsAwayTeam, :predictionGoalsHomeTeam, :comment]}}}}}) %>
         var currentTip = <%= raw Tip.last.to_json %>
         var tipsters = <%= raw User.where(role: "Tipster").to_json(:include => :user_connections) %>
     <% end %> 
