@@ -72,6 +72,4 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   // $scope.selectUser = function(user) {
   //   $scope.selectedUser = user;
   // };
-
-
 }]);
