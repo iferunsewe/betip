@@ -25,11 +25,13 @@ class TipsController < ApplicationController
   def create
     @tip = Tip.new(params[:tip])
     @tip.save
-    @prediction = Prediction.find(params[:prediction][:fixtureId])
-    @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsHomeTeam]
-    @prediction.predictionGoalsHomeTeam = params[:prediction][:predictionGoalsAwayTeam]
-    @prediction.save
-    @tip.predictions << @prediction
+    params[:prediction].each do |p|
+      @prediction = Prediction.find(p[:fixtureId])
+      @prediction.predictionGoalsHomeTeam = p[:predictionGoalsHomeTeam]
+      @prediction.predictionGoalsAwayTeam = p[:predictionGoalsAwayTeam]
+      @prediction.save
+      @tip.predictions << @prediction
+    end
     respond_with(@tip)
   end
 

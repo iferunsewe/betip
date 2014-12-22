@@ -42,6 +42,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
   };
   
   $http.get('/predictions/fixtures_this_week').success(function(response){
+    console.log(response)
     $scope.fixturesThisWeek = response.data;
   });
 

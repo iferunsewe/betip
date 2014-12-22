@@ -12,9 +12,9 @@
 
   <h5>Tips</h5>
   <ul>
-    <li ng-repeat="tip in userTips">{{tip.bookies}}</li>
-    <li ng-repeat="prediction in userPredictions"><b>{{prediction.homeTeam}}: vs {{prediction.awayTeam}}:</b> </li>
-    <li ng-repeat="typeOfBet in userTypeOfBet">{{typeOfBet.name}}</li>
+    <li ng-repeat="tip in userTips">{{tip}}</li>
+    <!-- <li ng-repeat="prediction in userPredictions"><b>{{prediction.homeTeam}} vs {{prediction.awayTeam}}:</b> </li>
+    <li ng-repeat="typeOfBet in userTypeOfBet">{{typeOfBet.name}}</li> -->
   </ul>
 
   <div ng-if="userProfile.data.id == currentUser.id">

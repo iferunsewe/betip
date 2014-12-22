@@ -5,6 +5,28 @@ html{
     height: 100%;
     background-image: url('fans-edit.jpg');
     background-size: cover;
+    .navbar{
+      a:visited{
+        color: #FFFFFF;
+        background-color: transparent;
+      }
+      a:hover{
+        background-color: transparent;
+      }
+      a:link {
+        color: #FFFFFF;
+        background-color: transparent;
+      }
+      .dropdown{
+        color: #000000;
+        a:visited{
+          color: #000000;
+        }
+        a:link {
+          color: #000000;
+        }
+      }
+    }
     .welcome-page-h1{
       width: 30%;
       text-align: center;

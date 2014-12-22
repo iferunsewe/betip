@@ -10,10 +10,10 @@
 
 
     <tr ng-repeat="p in prediction | limitTo : 10">
-        <td>{{p.date | date : format : "medium"}}</td>
-        <td>{{p.homeTeam}}</td>
+        <td>{{ p.date | date : format : "medium" }}</td>
+        <td>{{ p.homeTeam }}</td>
         <td>{{ p.awayTeam }}</td>
-        <td>{{p.type_of_bet_name}}</td>
+        <td>{{ p.type_of_bet_name }}</td>
     </tr>
   </div>
   </table>

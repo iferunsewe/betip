@@ -15,20 +15,21 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
       tip:{ 
         user_id: data.data.id
       }}).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
+      console.log(data)
       $scope.userTips = data
-      $http.post('/users/profile_predictions.json', {
-        predictions:
-        { 
-          tip_id: data.data.id
-        }}).success(function(data){
-        $scope.userPredictions = data
-        $http.post('/users/profile_type_of_bet.json', {
-          type:{
-            type_of_bet_id: data.data.type_of_bet_id
-          }}).success(function(data){
-          $scope.userTypeOfBet = data
-        });
-      });
+      // $http.post('/users/profile_predictions.json', {
+      //   predictions:
+      //   { 
+      //     tip_id: data.data.id
+      //   }}).success(function(data){
+      //   $scope.userPredictions = data
+      //   $http.post('/users/profile_type_of_bet.json', {
+      //     type:{
+      //       type_of_bet_id: data.data.type_of_bet_id
+      //     }}).success(function(data){
+      //     $scope.userTypeOfBet = data
+      //   });
+      // });
     });
   });
 

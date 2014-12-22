@@ -34,7 +34,6 @@ class UserConnectionsController < ApplicationController
   end
 
   def followed_tipster
-    # @followed_tipster = UserConnection.where(following: false)
     @followed_tipster = UserConnection.where(tipster_id: params[:tipster][:tipster_id])
     render json: { data: @followed_tipster }.to_json
   end
