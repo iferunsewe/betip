@@ -14,20 +14,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
     $scope.userProfile = data
     $http.post('/users/profile_tips.json', {tip:{ user_id: data.data.id}}).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
-      $scope.userTips = data
-      $http.post('/users/profile_predictions.json', {predictions:{ tip_id: data.data.id}}).success(function(data){
-        $scope.userPredictions = data
-        $http.post('/users/profile_type_of_bet.json', {type: {type_of_bet_id: data.data.type_of_bet_id}}).success(function(data){
-          $scope.userTypeOfBet = data
-        });
-      });
+      $scope.userTips = angular.fromJson(data.data)
+      //Json data coming back from the controller was being passed as a string, so i used the angular function angular.fromJson() to parse the string back into an object and stored it in $scope.userTipsto make it accessible.
+      console.log($scope.userTips)
     });
   });
-
-  //gets all the tips data
-  // $http.get('/tips.json').success(function(data){
-  //   $scope.tips = data;
-  // });
 
   //get method to get all of the user connections for a subscription request
   $http.get('/user_connections/subscription_requests').success(function(response){
@@ -68,8 +59,4 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
       });
     });
   };
-
-  // $scope.selectUser = function(user) {
-  //   $scope.selectedUser = user;
-  // };
 }]);

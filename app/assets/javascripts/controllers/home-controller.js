@@ -30,7 +30,8 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
 
   $scope.makeTip = function(tip){
-    data = {tip: {bookies: tip.bookies, user_id: $scope.currentUser.id}, prediction: $scope.madePredictions[0]}
+    data = {tip: {bookies: tip.bookies, user_id: $scope.currentUser.id}, prediction: $scope.madePredictions}
+    console.log($scope.madePredictions)
     $http.post('/tips.json', data).success(function(data){
     });
     $scope.predictionForm.$setPristine()
