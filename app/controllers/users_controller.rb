@@ -60,12 +60,13 @@ class UsersController < ApplicationController
     render json: { data: @usersProfile }.to_json
   end
 
-  def profile_tips
-    @userTips = Tip.find(params[:tip][:user_id])
+  def profile_tips 
+    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name} }}])
     render json: { data: @userTips }.to_json
   end
 
   def profile_predictions
+    # binding.pry
     @userPredictions = Prediction.find(params[:predictions][:tip_id])
     render json: { data: @userPredictions }.to_json
   end
