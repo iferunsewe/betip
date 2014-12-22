@@ -64,22 +64,17 @@ class UsersController < ApplicationController
     render json: { data: @usersProfile }.to_json
   end
 
-
-  # Get all the tips show on their profile page
-  def profile_tips
-    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => :predictions)
+  def profile_tips 
+    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name} }}])
     render json: { data: @userTips }.to_json
   end
 
-  # def profile_predictions
-  #   @userPredictions = Prediction.find(params[:predictions][:tip_id])
-  #   render json: { data: @userPredictions }.to_json
-  # end
+  def profile_predictions
+    # binding.pry
+    @userPredictions = Prediction.find(params[:predictions][:tip_id])
+    render json: { data: @userPredictions }.to_json
+  end
 
-  # def profile_type_of_bet
-  #   @userTypeOfBet = TypeOfBet.find(params[:type][:type_of_bet_id])
-  #   render json: { data: @userTypeOfBet }.to_json
-  # end
 
   # Method to work out the win percentage of a user which be used on the output page
   def win_ratio(user)

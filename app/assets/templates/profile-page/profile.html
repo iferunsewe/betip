@@ -11,10 +11,10 @@
   <h5><b>Price:    {{ userProfile.data.price | currency:'£' }}</b></h5>
 
   <h5>Tips</h5>
-  <ul>
-    <li ng-repeat="tip in userTips">{{tip}}</li>
-    <!-- <li ng-repeat="prediction in userPredictions"><b>{{prediction.homeTeam}} vs {{prediction.awayTeam}}:</b> </li>
-    <li ng-repeat="typeOfBet in userTypeOfBet">{{typeOfBet.name}}</li> -->
+
+  <ul ng-repeat="tip in userTips">
+    <h3>{{tip.bookies}}</h3>
+    <li ng-repeat="prediction in tip.predictions"> <b>{{prediction.homeTeam}} vs {{prediction.awayTeam}} | Bet Type: {{prediction.type_of_bet.name}}</b></li>
   </ul>
 
   <div ng-if="userProfile.data.id == currentUser.id">

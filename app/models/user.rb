@@ -1,8 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
   attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :user_image, :prediction_id, :price, :provider, :role, :tip_id, :uid, :win_percentage, :user_connections
 
@@ -21,6 +20,13 @@ class User < ActiveRecord::Base
 
   def role?(role_to_compare)
     self.role.to_s == role_to_compare.to_s
+  end
+
+  before_create :default_win_percentage
+
+  private
+  def default_win_percentage
+    self.win_percentage = 0
   end
 
   # def tip_predictions(user)
