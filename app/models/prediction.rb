@@ -27,11 +27,4 @@ class Prediction < ActiveRecord::Base
     binding.pry
     puts "debug"
   end
-
-  def correct_prediction
-    @predictions = Prediction.all
-    @correctPredictions = @predictions.select do |prediction|
-      prediction.result.betWon == true
-    end
-  end
 end

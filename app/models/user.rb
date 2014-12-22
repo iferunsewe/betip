@@ -23,15 +23,11 @@ class User < ActiveRecord::Base
     self.role.to_s == role_to_compare.to_s
   end
 
-  def tip_predictions(user)
-    user.tips.each do |tip|
-      puts tip.predictions
-    end
-  end
+  # def tip_predictions(user)
+  #   user.tips.each do |tip|
+  #     puts tip.predictions
+  #   end
+  # end
 
-  def win_ratio(user)
-    tips = user.tips.count.to_f
-    numberOfTipsWon = (Tip.joins(:user).where({:won => true}, {user_id: user.id})).count.to_f
-    winRatio = ((numberOfTipsWon / tips) * 100)
-  end
+  
 end

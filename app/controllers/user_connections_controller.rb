@@ -28,11 +28,13 @@ class UserConnectionsController < ApplicationController
     respond_with(@connections)
   end
 
+  # Method to send a subscripstion request
   def subscription_requests
     @subscriptionRequests = UserConnection.where(tipster_id: current_user.id)
     render json: { data: @subscriptionRequests }.to_json
   end
 
+  # Method to see find the users which have been followed so it change their status to pending
   def followed_tipster
     @followed_tipster = UserConnection.where(tipster_id: params[:tipster][:tipster_id])
     render json: { data: @followed_tipster }.to_json

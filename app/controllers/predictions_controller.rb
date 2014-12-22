@@ -10,14 +10,24 @@ class PredictionsController < ApplicationController
     respond_with(@predictions)
   end
 
+  # Method to show all of fixtures today which can be used on the homepage
   def fixtures_today
     @fixturesToday = Prediction.where('date BETWEEN ? AND ?', DateTime.now.beginning_of_day, DateTime.now.end_of_day).all
     render json: { data: @fixturesToday }.to_json
   end
 
+  # Method to show all of fixtures this week which can be used on the homepage and make a tip page
   def fixtures_this_week 
     @fixturesThisWeek = Prediction.where('date BETWEEN ? AND ?', DateTime.now.beginning_of_week, DateTime.now.end_of_week).all
     render json: { data: @fixturesThisWeek }.to_json
+  end
+
+  # Method to select all of correct predictions, which may used to work out the win ratio for a user
+  def correct_prediction
+    @predictions = Prediction.all
+    @correctPredictions = @predictions.select do |prediction|
+      prediction.result.betWon == true
+    end
   end
 
   def show
@@ -33,9 +43,7 @@ class PredictionsController < ApplicationController
   end
 
   def create
-
     @prediction = Prediction.new(params[:prediction])
-
     @prediction.save
     respond_with(@prediction)
   end
@@ -51,16 +59,10 @@ class PredictionsController < ApplicationController
     @prediction.destroy
     respond_with(@prediction)
   end
-
-  def next_fixtures
-    fixtures_today
-    render json: { data: fixtures_today }.to_json
-  end
-
-
+  
   private
-  def set_prediction
-    @prediction = Prediction.find(params[:id])
-  end
+    def set_prediction
+      @prediction = Prediction.find(params[:id])
+    end
 
 end

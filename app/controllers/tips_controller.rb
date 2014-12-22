@@ -40,6 +40,15 @@ class TipsController < ApplicationController
     respond_with(@tip)
   end
 
+  # Method to see whether all of the predictions on a tip are won or not and if they are, this will set the tip to won
+  def tip_won(tip)
+    if tip.predictions.each do |prediction|
+      prediction.result.betWon == true
+      end
+    end
+    tip.won == true
+  end
+
   def destroy
     @tip.destroy
     respond_with(@tip)

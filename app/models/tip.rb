@@ -6,12 +6,4 @@ class Tip < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :predictions
-
-  def tip_won(tip)
-    if tip.predictions.each do |prediction|
-      prediction.result.betWon == true
-    end
-    end
-    tip.won == true
-  end
 end
