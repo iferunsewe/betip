@@ -12,11 +12,11 @@
     <td>{{tipster.win_percentage}}%</td>
     <td>{{tipster.price | currency:'£' }}</td>
     <div>
-      <td ng-if="tipster.user_connections[0].following == null"><button 
+      <td ng-if="tipster.user_connections[0].following == null && tipster.id != currentUser.id"><button 
         ng-click="subscribeTips(tipster)"
         class="btn btn-success">Follow</button></td>
-      <td ng-if="tipster.user_connections[0].following == false">Pending</td>
-      <td ng-if="tipster.user_connections[0].following == true">Following</td>
+      <td ng-if="tipster.user_connections[0].following == false && tipster.user_connections[0].customer_id == currentUser.id">Pending</td>
+      <td ng-if="tipster.user_connections[0].following == true && tipster.user_connections[0].customer_id == currentUser.id">Following</td>
     </div>
   </tr>
 </table>

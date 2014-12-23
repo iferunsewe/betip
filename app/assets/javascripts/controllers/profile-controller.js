@@ -6,6 +6,7 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
 
 //getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
   $http.get('/users/tipsters').success(function(data) {
+    console.log(data)
     $scope.tipsters = angular.fromJson(data.data) //had to use angular.fromJson as data was coming back as a string. get the tipster information again and reassign tipsters with the updated information. will be stored as $scope.tipsters so will replace the original $scope.tipsters with the older data
   })
 
@@ -16,7 +17,6 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
     $http.post('/users/profile_tips.json', {tip:{ user_id: data.data.id}}).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
       $scope.userTips = angular.fromJson(data.data)
       //Json data coming back from the controller was being passed as a string, so i used the angular function angular.fromJson() to parse the string back into an object and stored it in $scope.userTips to make it accessible.
-      console.log($scope.userTips)
     });
   });
 

@@ -34,6 +34,4 @@ class User < ActiveRecord::Base
   #     puts tip.predictions
   #   end
   # end
-
-  
 end

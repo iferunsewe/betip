@@ -36,13 +36,12 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
       }, 
       prediction: $scope.madePredictions
     },
-    $http.post('/tips.json', data).success(function(data){
-      console.log(data)
+    $http.post('/tips.json', data).success(function(data, tip){
+      $scope.madeTip = tip;//used to switch page to tell users they've made a tip
     });
   };
   
   $http.get('/predictions/fixtures_this_week').success(function(response){
-    console.log(response)
     $scope.fixturesThisWeek = response.data;
   });
 

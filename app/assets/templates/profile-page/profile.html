@@ -12,14 +12,14 @@
 
   <h5>Tips</h5>
 
-  <ul ng-repeat="tip in userTips">
+  <ul ng-repeat="tip in userTips | limitTo : 3">
     <h3>{{tip.bookies}}</h3>
     <li ng-repeat="prediction in tip.predictions"> <b>{{prediction.homeTeam}} vs {{prediction.awayTeam}} | Bet Type: {{prediction.type_of_bet.name}}</b></li>
   </ul>
 
   <div ng-if="userProfile.data.id == currentUser.id">
     <h3>Subscription Requests</h3>
-    <div ng-repeat="f in follower">
+    <div ng-repeat="f in follower | limitTo : 3">
       <div ng-if="f.following == false">
         <p>{{f.customer_name}}</p>
         <button ng-click="acceptSubscription(f)" class="btn btn-success">Accept</button>
