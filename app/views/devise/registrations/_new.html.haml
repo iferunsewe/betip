@@ -1,4 +1,8 @@
 %h2 Sign up
+= link_to (image_tag("Red-signin_Google_base_44dp.png")),
+  user_omniauth_authorize_path(:google_oauth2)
+= link_to (image_tag("login-with-facebook.png")),
+  user_omniauth_authorize_path(:facebook)
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .field

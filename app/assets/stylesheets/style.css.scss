@@ -3,71 +3,96 @@ html{
   body{
     width: 100%;
     height: 100%;
-    background-image: url('fans-edit.jpg');
-    background-size: cover;
     .navbar{
+      font-family: 'Open Sans Condensed', sans-serif;
+      a{
+        color: white;
+        img{
+          height: 50px;
+          width: 160px;
+        }
+      }
       a:visited{
-        color: #FFFFFF;
-        background-color: transparent;
-      }
-      a:hover{
-        background-color: transparent;
-      }
-      a:link {
-        color: #FFFFFF;
-        background-color: transparent;
-      }
-      .dropdown{
-        color: #000000;
-        a:visited{
-          color: #000000;
-        }
-        a:link {
-          color: #000000;
-        }
-      }
-      // border-bottom: 5px solid white;
-      h1{
-        border-radius: 5%;
         color: white;
       }
-      h1.login{
-        margin-left: 50%;
-        width: 100%;
+      ul.dropdown-menu{
+        background-color: black;
+        color: white;
       }
-      h1:hover{
-        background-color: #5C5C5C;
-      }
-      h3:hover{
-        background-color: #5C5C5C;
+      background-color: black;
+      border-bottom: 5px solid #c8001b;
+      .blue{
+        border-bottom: 5px solid #1c90bc;
       }
     }
-    .welcome-page-h1{
-      width: 30%;
-      text-align: center;
-      margin: 0 auto;
-      color: #e7e7e7;
-      margin-top: 16%;
-      font-size: 1300%;
-    }
-    .welcome-page-h4{
-      color: #e7e7e7;
-      width: 15%;
-      border: 5px solid #e7e7e7;
-      margin-left: 12%;
-      padding: 3%;
-      border-radius: 100%;
+    .welcome-page{
+      background-image: url('fans-edit.jpg');
+      height: 70%;
+      margin-top:12%;
+      .navbar{
+        h1.login{
+          margin-left: 50%;
+          width: 100%;
+          color: white;
+        }
+        h1.login:hover{
+          text-decoration: underline;
+        }
+        h1.sign-up{
+          color: white;
+        }
+        h1.sign-up:hover{
+          text-decoration: underline;
+        }
+      }
+      .welcome-page-h1{
+        width: 50%;
+        text-align: center;
+        margin: 0 auto;
+        font-size: 1300%;
+        padding-top: 10%;
+      }
+      // .welcome-page-h4{
+      //   color: #e7e7e7;
+      //   width: 15%;
+      //   border: 5px solid #e7e7e7;
+      //   margin-left: 12%;
+      //   padding: 3%;
+      //   border-radius: 100%;
+      // }
     }
     .inner-body{
-      .hidden{
-        display: none;
+      width: 60%;
+      height: 200%;
+      margin: 0 auto;
+      margin-top: 6%;
+      border-radius: 1%;
+      background-color: #d7d7d7;
+      padding-top: 2.5%;
+      color: black;
+      .carousel-inner{
+        width:100%;
+        height:315px;
+        .carousel-active{
+          width: 50%;
+          margin: 0 auto;
+          text-align: center;
+        }
+        .carousel-image{
+          border-radius: 100%;
+          height: 160px;
+          width: 160px;
+          margin: 0 auto
+        }
       }
-      padding: 2.5%;
-      h2{
-        border-bottom: 1px solid #777;
-        color: #777;
-        text-align: center;
-        padding: 2%;
+      .carousel-control.left{
+        background-image:none;
+      }
+      .carousel-control.left:hover{
+        background-image:none;
+      }
+      .carousel-control.right{
+        background-image:none;
       }
       .profile-page{
         img{
@@ -76,12 +101,54 @@ html{
           height: 223px;
           width: 223px;
         } 
+        h3{
+          border-top: 1px solid black;
+          border-bottom: 1px solid black;
+        }
+        h4{
+          margin-left: 35%;
+        }
+        button{
+          margin-left: 44%;
+        }
+        .table tr {
+          th.profile-tip-date{
+            width: 18%;
+          }
+          th.profile-tip-bookies{
+            width: 22%;
+          }
+          td ul.profile-tip-predictions-data{
+            margin-left: -10%;
+            li.type-of-bet-name-score{
+              display: inline;
+            }
+            li .tip-accordion{
+              #tip-accordion-data{
+                ul li{
+                  font-size: 9px;
+                }
+                p{
+                  font-size: 9px;
+                }
+              }
+            }
+          }
+        }
       }
-      width: 60%;
-      height: 200%;
-      margin: 0 auto;
-      border-radius: 1%;
-      background-color: #e7e7e7;
+      .tip-form{
+        display: block;
+        margin: 0 auto;    
+        border: 2px solid #777;
+        width: 50%;
+        height: 45%;
+        border-radius: 5%;
+        padding: 5%;
+        margin-bottom: 5%;
+        ul{
+          padding-left: 0;
+        }
+      }      
       .add-prediction{
         .input-number{
           width: 10%;
@@ -97,35 +164,15 @@ html{
       button{
         color: black;
       }
-    }
-    .carousel-inner{
-      width:100%;
-      height:315px;
-      .carousel-active{
-        width: 50%;
-        margin: 0 auto;
-        padding-left: 15%;
+      .hidden{
+        display: none;
       }
-      .carousel-image{
-        border-radius: 100%;
-        height: 160px;
-        width: 160px;
+      h2{
+        border-bottom: 1px solid black;
         text-align: center;
+        padding: 2%;
       }
-    }
-    .tip-form{
-      display: block;
-      margin: 0 auto;    
-      border: 2px solid #777;
-      width: 50%;
-      height: 45%;
-      border-radius: 5%;
-      padding: 5%;
-      margin-bottom: 5%;
-      ul{
-        padding-left: 0;
-      }
-    }
+    }   
     ul{
       list-style: none;
     }

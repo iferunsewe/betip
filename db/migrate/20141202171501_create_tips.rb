@@ -4,7 +4,7 @@ class CreateTips < ActiveRecord::Migration
       t.float :odds
       t.string :bookies
       t.boolean :won
-      t.integer :prediction_id
+      t.text :comment
       t.integer :user_id
 
       t.timestamps

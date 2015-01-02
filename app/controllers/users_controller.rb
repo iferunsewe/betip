@@ -40,12 +40,23 @@ class UsersController < ApplicationController
 
   # Method to get the tips of the people you follow
   def followed_tips
+    # @followedTips = current_user.reverse_user_connections.map do |user|
+    #   User.find(user.tipster_id).to_json(:include => [:tips => {:include => {:predictions => {:include => {:type_of_bet => {:only => :name}}}}}])
+    #   end
+    # @followedTips = current_user.reverse_user_connections.map do |user|
+    #   Tip.where(user_id:user.tipster_id).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
+    # end
     @followedTips = current_user.reverse_user_connections.map do |user|
+      # get the people the current user follows
       User.find(user.tipster_id).tips.map do |tip|
         tip.predictions.map do |prediction|
-          attrs = prediction.attributes
+          attrs = prediction.attributes #.attributes converts the object to a hash
           attrs[:type_of_bet_name] = prediction.type_of_bet.name
-          attrs
+          # attrs[:user] = user.attributes 
+          # attrs[:tip] = tip.attributes
+          # if attrs["date"].to_date > Date.today
+            attrs
+          # end
         end
       end  
     end.flatten  
@@ -60,12 +71,12 @@ class UsersController < ApplicationController
 
   # Method find a user for the their profile page
   def users_profile
-    @usersProfile = User.find(params[:id])
-    render json: { data: @usersProfile }.to_json
+    @usersProfile = User.find(params[:id]).to_json(:include => :user_connections)
+    render json: { data: @usersProfile }
   end
 
   def profile_tips 
-    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name} }}])
+    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
     render json: { data: @userTips }.to_json
   end
 

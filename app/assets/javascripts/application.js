@@ -15,4 +15,5 @@
 //= require angular
 //= require angular-animate
 //= require angular-route-1-2-0
+//= require angularSlideables
 //= require_tree .

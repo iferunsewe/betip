@@ -7,8 +7,19 @@ class FootballData
   def initialize
     response = Net::HTTP.get URI(URL)
 
-    
     @data  = JSON(response)
     return @data
+  end
+
+  def insert_into_prediction_table
+    @data.map do |fixture|
+      if fixture["date"].to_date > Date.today
+        @newFixture = Prediction.new
+        newPrediction.date = fixture["date"]
+        newPrediction.homeTeam = fixture["homeTeam"]
+        newPrediction.awayTeam = fixture["awayTeam"]
+        newPrediction.save
+      end
+    end
   end
 end

@@ -40,8 +40,6 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.text :user_image
       t.float :price
       t.string :role
-      t.string :provider
-      t.string :uid
       t.integer :prediction_id
       t.integer :tip_id
     end

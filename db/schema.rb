@@ -11,18 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20141204103348) do
+ActiveRecord::Schema.define(:version => 20141230164250) do
 
   create_table "predictions", :force => true do |t|
     t.datetime "date"
     t.string   "homeTeam"
     t.string   "awayTeam"
-    t.text     "comment"
     t.integer  "predictionGoalsHomeTeam"
     t.integer  "predictionGoalsAwayTeam"
     t.integer  "type_of_bet_id"
     t.integer  "user_id"
-    t.integer  "result_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
@@ -30,6 +28,14 @@ ActiveRecord::Schema.define(:version => 20141204103348) do
   create_table "predictions_tips", :id => false, :force => true do |t|
     t.integer "prediction_id"
     t.integer "tip_id"
+  end
+
+  create_table "providers", :force => true do |t|
+    t.string   "uid"
+    t.string   "provider"
+    t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "results", :force => true do |t|
@@ -45,10 +51,10 @@ ActiveRecord::Schema.define(:version => 20141204103348) do
     t.float    "odds"
     t.string   "bookies"
     t.boolean  "won"
-    t.integer  "prediction_id"
+    t.text     "comment"
     t.integer  "user_id"
-    t.datetime "created_at",    :null => false
-    t.datetime "updated_at",    :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
   end
 
   create_table "type_of_bets", :force => true do |t|
@@ -84,8 +90,6 @@ ActiveRecord::Schema.define(:version => 20141204103348) do
     t.text     "user_image"
     t.float    "price"
     t.string   "role"
-    t.string   "provider"
-    t.string   "uid"
     t.integer  "prediction_id"
     t.integer  "tip_id"
   end

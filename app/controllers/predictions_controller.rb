@@ -49,10 +49,72 @@ class PredictionsController < ApplicationController
   end
 
   def update
-    binding.pry
     @prediction = Prediction.find(params[:id])
     @prediction.update_attributes(params[:prediction])
     respond_with(@prediction)
+  end
+
+
+  # Method to set the variables used in the below method
+  def set_variables_for_result
+    @winHomeTeam = typeOfBetId == 1 && (resultHomeTeam > resultAwayTeam)
+    @winAwayTeam = typeOfBetId == 2 && (resultAwayTeam > resultHomeTeam)
+    @draw = typeOfBetId == 3 && (resultAwayTeam == resultHomeTeam)
+    @bothTeamsToScore = typeOfBetId == 4 && (resultHomeTeam > 0 && resultAwayTeam > 0)
+    @over0_5 = typeOfBetId == 5 && (resultTotalNumberOfGoals > 0.5)
+    @over1_5 = typeOfBetId == 6 && (resultTotalNumberOfGoals > 1.5)
+    @over2_5 = typeOfBetId == 7 && (resultTotalNumberOfGoals > 2.5)
+    @over3_5 = typeOfBetId == 8 && (resultTotalNumberOfGoals > 3.5)
+    @over4_5 = typeOfBetId == 9 && (resultTotalNumberOfGoals > 4.5)
+    @over5_5 = typeOfBetId == 10 && (resultTotalNumberOfGoals > 5.5)
+    @over6_5 = typeOfBetId == 11 && (resultTotalNumberOfGoals > 6.5)
+    @over7_5 = typeOfBetId == 12 && (resultTotalNumberOfGoals > 7.5)
+    @correctScore = typeOfBetId == 13 && (predictionHomeTeam == resultHomeTeam && predictionAwayTeam == resultAwayTeam)
+  end
+
+  # Method to check the result of the prediction made
+  def result_bet
+    @predictions = Prediction.where(params[:id])
+    @predictions.map do |prediction|
+      @betWon = (prediction.result.betWon = true)
+      @betLost = (prediction.result.betWon = false)
+      predictionHomeTeam = prediction.predictionGoalsHomeTeam
+      predictionAwayTeam = prediction.predictionGoalsAwayTeam
+      resultHomeTeam = prediction.result.goalsHomeTeam  
+      resultAwayTeam = prediction.result.goalsAwayTeam
+      typeOfBetId = prediction.type_of_bet_id
+      resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
+      if @winHomeTeam
+        @betWon
+      elsif @winAwayTeam
+        @betWon
+      elsif  @draw
+        @betWon
+      elsif @bothTeamsToScore
+        @betWon
+      elsif @over0_5
+        @betWon
+      elsif @over1_5
+        @betWon
+      elsif @over2_5
+        @betWon
+      elsif @over3_5
+        @betWon
+      elsif @over4_5
+        @betWon
+      elsif @over5_5
+        @betWon
+      elsif @over6_5
+        @betWon
+      elsif @over7_5
+        @betWon
+      elsif @correctScore
+        @betWon
+      else
+        @betLost
+      end
+    end
+    render json: { data:  @predictions }.to_json
   end
 
   def destroy

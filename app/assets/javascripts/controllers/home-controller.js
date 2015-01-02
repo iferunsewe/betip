@@ -24,7 +24,8 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //using controller action 'followed tips' to get the tips of a tipster that a customer follows
   $http.get('/users/followed_tips.json').success(function(data){
-    $scope.followedTips = data 
+    console.log(data)
+    $scope.followedTips = data
   });
 
 

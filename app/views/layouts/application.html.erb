@@ -6,6 +6,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
   <%= javascript_include_tag "http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js" %>
   <%= csrf_meta_tags %>
 </head>
@@ -13,11 +14,13 @@
 
   <% if current_user %>
     <%= render "layouts/navbar/navloggedin" %>
-      <div ng-view class="inner-body"></div>
+    <div ng-view class="inner-body"></div>
   <% else %>
-    <%= render "layouts/navbar/navlogin" %>
-    <h1 class="welcome-page-h1">Betip</h1>
-    <h4 class="welcome-page-h4">How does it work?<h4>
+    <div class="welcome-page">
+      <%= render "layouts/navbar/navlogin" %>
+      <h1 class="welcome-page-h1">betip</h1>
+      <!-- <h4 class="welcome-page-h4">How does it work?<h4> -->
+    </div>
   <%end %>
 
 

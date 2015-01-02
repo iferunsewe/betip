@@ -1,5 +1,5 @@
 Betip::Application.routes.draw do
-  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}
+  devise_for :users, :path_names => { :sign_in => 'login', :sign_out => 'logout'}, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   get '/betip/*path'=> "static#index"
   
@@ -8,6 +8,8 @@ Betip::Application.routes.draw do
   resources :type_of_bets
 
   match 'predictions/fixtures_this_week' => 'predictions#fixtures_this_week'
+
+  match 'predictions/result_bet' => 'predictions#result_bet'
   
   resources :predictions
 

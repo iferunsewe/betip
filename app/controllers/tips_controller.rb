@@ -18,7 +18,7 @@ class TipsController < ApplicationController
     @tip = Tip.new
     respond_with(@tip)
   end
-
+  
   def edit
   end
 
