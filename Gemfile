@@ -40,6 +40,7 @@ gem 'rmagick'
 gem 'angularjs-rails'
 gem 'rails_12factor'
 gem "sass", "~> 3.2.5"
+gem 'ngannotate-rails'
 #------------------------------------------------------------------------------------
 
 
