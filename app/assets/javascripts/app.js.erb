@@ -32,11 +32,6 @@ app.config(function($routeProvider, $locationProvider){
     templateUrl: "<%= asset_path('profile-page/leadertable.html') %>"
   });
 
-  $routeProvider.when('/tips', {
-    controller: 'tipController',
-    templateUrl: "<%= asset_path('tip-page/tip.html') %>"
-  });
-
   $routeProvider.otherwise({
     redirectTo: '/home'
   });
