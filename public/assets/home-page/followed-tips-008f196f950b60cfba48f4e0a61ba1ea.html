@@ -1,0 +1,36 @@
+<div>
+  <h2>Followed tips</h2>
+  <!-- <div ng-repeat="user in followedUsers">
+    <div ng-repeat="useruser in user">
+      {{useruser.name}}
+    </div>
+  </div> -->
+  <table class="table table-bordered" ng-repeat="prediction in followedTips" >
+
+   <!--  <tr>
+      <th class="profile-tip-date">Date</th>
+      <th class="profile-tip-bookies">Bookies</th>
+      <th>Predictions</th>
+    </tr> -->
+    <tr>
+      <th>Date</th>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Prediction</th>
+    </tr>
+    
+    <!-- <tr ng-repeat="tip in followedTips track by $index ">
+      <td></td>
+    </tr> -->
+    <!-- <tr ng-repeat="tips in user track by $index">
+      {{ tip.bookies }}
+    </tr> -->
+
+    <tr ng-repeat="p in prediction | limitTo : 10">
+        <td>{{ p.date | date : format : "medium" }}</td>
+        <td>{{ p.homeTeam }}</td>
+        <td>{{ p.awayTeam }}</td>
+        <td>{{ p.type_of_bet_name }}</td>
+    </tr>
+  </table>
+</div>
