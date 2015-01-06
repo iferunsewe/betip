@@ -20,6 +20,8 @@ Betip::Application.routes.draw do
 
   match 'users/profile_tips' => 'users#profile_tips'
 
+  match 'tips/tip_won' => 'tips#tip_won'
+
   resources :tips
   
   match 'users/tipsters' => 'users#tipsters'

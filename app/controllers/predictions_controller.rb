@@ -54,9 +54,15 @@ class PredictionsController < ApplicationController
     respond_with(@prediction)
   end
 
-
-  # Method to set the variables used in the below method
-  def set_variables_for_result
+  # Method to check the result of the prediction made
+  def result_bet
+    @prediction = Prediction.find(params[:prediction][:prediction_id])
+    predictionHomeTeam = @prediction.predictionGoalsHomeTeam
+    predictionAwayTeam = @prediction.predictionGoalsAwayTeam
+    resultHomeTeam = @prediction.result.goalsHomeTeam  
+    resultAwayTeam = @prediction.result.goalsAwayTeam
+    resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
+    typeOfBetId = @prediction.type_of_bet_id
     @winHomeTeam = typeOfBetId == 1 && (resultHomeTeam > resultAwayTeam)
     @winAwayTeam = typeOfBetId == 2 && (resultAwayTeam > resultHomeTeam)
     @draw = typeOfBetId == 3 && (resultAwayTeam == resultHomeTeam)
@@ -70,51 +76,44 @@ class PredictionsController < ApplicationController
     @over6_5 = typeOfBetId == 11 && (resultTotalNumberOfGoals > 6.5)
     @over7_5 = typeOfBetId == 12 && (resultTotalNumberOfGoals > 7.5)
     @correctScore = typeOfBetId == 13 && (predictionHomeTeam == resultHomeTeam && predictionAwayTeam == resultAwayTeam)
+    # @prediction.result.betWon = true = (@prediction.result.betWon = true)
+    # @prediction.result.betWon = false = (@prediction.result.betWon = false)
+    have_they_won?
+    render json: { data:  @prediction }.to_json
   end
 
-  # Method to check the result of the prediction made
-  def result_bet
-    @predictions = Prediction.where(params[:id])
-    @predictions.map do |prediction|
-      @betWon = (prediction.result.betWon = true)
-      @betLost = (prediction.result.betWon = false)
-      predictionHomeTeam = prediction.predictionGoalsHomeTeam
-      predictionAwayTeam = prediction.predictionGoalsAwayTeam
-      resultHomeTeam = prediction.result.goalsHomeTeam  
-      resultAwayTeam = prediction.result.goalsAwayTeam
-      typeOfBetId = prediction.type_of_bet_id
-      resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
-      if @winHomeTeam
-        @betWon
-      elsif @winAwayTeam
-        @betWon
-      elsif  @draw
-        @betWon
-      elsif @bothTeamsToScore
-        @betWon
-      elsif @over0_5
-        @betWon
-      elsif @over1_5
-        @betWon
-      elsif @over2_5
-        @betWon
-      elsif @over3_5
-        @betWon
-      elsif @over4_5
-        @betWon
-      elsif @over5_5
-        @betWon
-      elsif @over6_5
-        @betWon
-      elsif @over7_5
-        @betWon
-      elsif @correctScore
-        @betWon
-      else
-        @betLost
-      end
+  # Method to set whether the prediction is won or not
+  def have_they_won?
+    if @winHomeTeam
+      @prediction.result.betWon = true
+    elsif @winAwayTeam
+      @prediction.result.betWon = true
+    elsif  @draw
+      @prediction.result.betWon = true
+    elsif @bothTeamsToScore
+      @prediction.result.betWon = true
+    elsif @over0_5
+      @prediction.result.betWon = true
+    elsif @over1_5
+      @prediction.result.betWon = true
+    elsif @over2_5
+      @prediction.result.betWon = true
+    elsif @over3_5
+      @prediction.result.betWon = true
+    elsif @over4_5
+      @prediction.result.betWon = true
+    elsif @over5_5
+      @prediction.result.betWon = true
+    elsif @over6_5
+      @prediction.result.betWon = true
+    elsif @over7_5
+      @prediction.result.betWon = true
+    elsif @correctScore
+      @prediction.result.betWon = true
+    else
+      @prediction.result.betWon = false
     end
-    render json: { data:  @predictions }.to_json
+    @prediction
   end
 
   def destroy

@@ -13,6 +13,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //getting the top three tipsters on the website 
   $http.get('/users/top_three').success(function(response) {
+    console.log(response)
     $scope.first = response.data[0]
     $scope.second = response.data[1]
     $scope.third = response.data[2]
@@ -24,9 +25,21 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //using controller action 'followed tips' to get the tips of a tipster that a customer follows
   $http.get('/users/followed_tips.json').success(function(data){
-    console.log(data)
     $scope.followedTips = data
   });
+
+  // $http.get('/users/followed_users.json').success(function(data){
+  //   $scope.followedUsers = data.data
+  //   angular.forEach($scope.followedUsers, function(user){
+  //     $http.post('/users/followed_tips.json', {
+  //       tip: { 
+  //         user_id: user.id
+  //       }
+  //     }).success(function(data){
+  //       console.log(data)
+  //     });
+  //   });
+  // });
 
 
   $scope.makeTip = function(tip){

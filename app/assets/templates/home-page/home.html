@@ -15,19 +15,16 @@
       <h3><a href="/betip/profile/{{first.id}}">{{ first.name }}</a></h3>
       <img class="carousel-image" src="{{first.user_image.url}}">
       <p><b>Win Percentage: </b>{{ first.win_percentage }}%</p>
-      <p><b>Price: </b>{{ first.price | currency:'£' }}</p>
     </div>
     <div class="item carousel-active">
       <h3><a href="/betip/profile/{{second.id}}">{{ second.name }}</a></h3>
       <img class="carousel-image" src="{{second.user_image.thumb.url}}">
       <p><b>Win Percentage: </b>{{ second.win_percentage }}%</p>
-      <p><b>Price: </b>{{ second.price | currency:'£' }}</p>
     </div>
     <div class="item carousel-active">
       <h3><a href="/betip/profile/{{third.id}}">{{ third.name }}</a></h3>
       <img class="carousel-image" src="{{third.user_image.thumb.url}}">
       <p><b>Win Percentage: </b>{{ third.win_percentage }}%</p>
-      <p><b>Price: </b>{{ third.price | currency:'£' }}</p>
     </div>
   </div>
  

@@ -44,7 +44,8 @@ class UsersController < ApplicationController
     #   User.find(user.tipster_id).to_json(:include => [:tips => {:include => {:predictions => {:include => {:type_of_bet => {:only => :name}}}}}])
     #   end
     # @followedTips = current_user.reverse_user_connections.map do |user|
-    #   Tip.where(user_id:user.tipster_id).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
+    #   tips = Tip.where(user_id:user.tipster_id).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
+    #   tips
     # end
     @followedTips = current_user.reverse_user_connections.map do |user|
       # get the people the current user follows
@@ -59,9 +60,21 @@ class UsersController < ApplicationController
           # end
         end
       end  
-    end.flatten  
+    end.flatten
     render json: { data: @followedTips }.to_json
   end
+
+  # def followed_users
+  #   @followedUsers = current_user.reverse_user_connections.map do |user|
+  #     User.where(id: user.tipster_id)
+  #   end
+  #   render json: { data: @followedUsers }.to_json
+  # end
+
+  # def followed_tips
+  #   @followedTips = Tip.where(user_id: params[:tip][:user_id]).to_json
+  #   render json: { data: @followedTips }.to_json
+  # end
   
   # Method to get all of the tipsters on the website so this can be used for the leadertable board
   def tipsters
@@ -85,7 +98,6 @@ class UsersController < ApplicationController
     @userPredictions = Prediction.find(params[:predictions][:tip_id])
     render json: { data: @userPredictions }.to_json
   end
-
 
   # Method to work out the win percentage of a user which be used on the output page
   def win_ratio(user)

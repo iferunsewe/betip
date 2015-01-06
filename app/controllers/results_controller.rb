@@ -35,39 +35,6 @@ class ResultsController < ApplicationController
     @result.destroy
     respond_with(@result)
   end
-  
-  # def result_bet(prediction)
-  #   case prediction 
-  #   when @correctScore
-  #     bet_won
-  #   when @winHomeTeam
-  #     bet_won
-  #   when @winAwayTeam
-  #     bet_won
-  #   when @draw
-  #     bet_won
-  #   when @bothTeamsToScore
-  #     bet_won
-  #   when @over0_5
-  #     bet_won
-  #   when @over1_5
-  #     bet_won
-  #   when @over2_5
-  #     bet_won
-  #   when @over3_5
-  #     bet_won
-  #   when @over4_5
-  #     bet_won
-  #   when @over5_5 
-  #     bet_won
-  #   when @over6_5
-  #     bet_won
-  #   when @over7_5
-  #     bet_won
-  #   else
-  #     bet_lost
-  #   end
-  # end
 
   private
     def set_result
