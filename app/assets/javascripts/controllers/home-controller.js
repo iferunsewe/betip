@@ -63,8 +63,16 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
   $scope.addPrediction = function(prediction, fixtureId) {
     data = {};
     data.fixtureId = fixtureId;
-    data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId];
-    data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId];
+    // if ( prediction.scores.predictionGoalsHomeTeam[fixtureId] != null ) {
+      data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId]
+    // } else {
+    //   data.predictionGoalsHomeTeam = -1
+    // }
+    // if ( prediction.scores.predictionGoalsAwayTeam[fixtureId] != null ) {
+      data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId]
+    // } else {
+    //   data.predictionGoalsAwayTeam = -1
+    // }
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
     $scope.madePredictions.push(data);
   }

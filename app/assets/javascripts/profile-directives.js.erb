@@ -13,3 +13,13 @@ app.directive('submittedTip', function(){
     templateUrl: "<%= asset_path('profile-page/submitted-tip.html')%>"
   };
 });
+
+app.directive('fixturesForTip', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('profile-page/fixtures-for-tip.html')%>"
+  }
+})
+
+

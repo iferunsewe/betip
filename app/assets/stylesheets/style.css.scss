@@ -75,13 +75,15 @@ html{
       // }
     }
     .inner-body{
-      width: 60%;
+      width: 70%;
       height: 200%;
       margin: 0 auto;
       margin-top: 6%;
       border-radius: 1%;
       background-color: #d7d7d7;
       padding-top: 2.5%;
+      padding-right: 2%;
+      padding-left: 2%;
       color: black;
       font-family: 'Raleway', sans-serif;
       .carousel-inner{
@@ -166,13 +168,15 @@ html{
         }
       }      
       .add-prediction{
-        .input-number{
-          width: 10%;
-          display: inline-block;
+        padding-left: initial;
+        font-size: 10px;
+        .line-input-numbers{
+          display:inline;
+          .input-number{
+            width: 7%;
+            display: inline-block;
+          }
         }
-      }
-      .add-button{
-        margin-left: 20%;
       }
       .select-bet-type{
         color: black;

@@ -1,0 +1,36 @@
+<div>
+    <!-- <div ng-repeat="(i, fixture) in fixturesThisWeek track by $index"> -->
+    <!-- Maybe not a form, maybe a repeated input  -->
+  <form name="predictionForm" ng-repeat="fixture in fixturesThisWeek track by fixture.id" ng-submit="addPrediction(predictions, fixture.id); predictionForm.$setPristine " class="form-group">
+
+      <!-- submitting to addPrediction function which takes in 2 parameters(predictions, fixture.id which we're getting from each individual fixture in fixtureThisWeek) -->
+      <!-- Each fixture is tracked by the fixture id -->
+      <ul class="add-prediction">
+        <li> {{ fixture.date | date : "dd/MM/yy H:mm" }} - 
+             {{ fixture.homeTeam }} vs {{ fixture.awayTeam }} |
+             <select ng-model="predictions.typeOfBetId[fixture.id]" class="select-bet-type">
+              <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
+            </select>
+            <div class="line-input-numbers" >
+              <input type="number" ng-model="predictions.scores.predictionGoalsHomeTeam[fixture.id]" class="form-control input-number"> vs 
+              <input type="number" ng-model="predictions.scores.predictionGoalsAwayTeam[fixture.id]" class="form-control input-number">
+            </div>
+            <button class="btn btn-default">Add</button>
+        </li>
+      </ul>
+      <!-- <section class="add-prediction">
+        <label for="homeTeam Score">{{ fixture.homeTeam }}</label>
+        <input type="number" ng-model="predictions.scores.predictionGoalsHomeTeam[fixture.id]" class="form-control input-number"> vs 
+        <label for="awayTeam Score">{{ fixture.awayTeam }}</label>
+        <input type="number" ng-model="predictions.scores.predictionGoalsAwayTeam[fixture.id]" class="form-control input-number"> 
+      </section>
+      <section="bet-type">
+        <label for="typeOfBets_id">Bet Type</label>
+        <select ng-model="predictions.typeOfBetId[fixture.id]" class="select-bet-type">
+          <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
+        </select>
+      </section>
+      <button class="btn btn-default add-button">Add</button> -->
+  </form>
+  <!-- ng-show="predictions.typeOfBetId[fixture.id] == 13" -->
+</div>

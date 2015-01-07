@@ -26,13 +26,14 @@
       <td>{{ tip.bookies }}</td>
       <td>
         <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions | limitTo : 1">
-          <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}}</li>
+          <!-- <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}}...</li>
           <li class="type-of-bet-name-score">{{prediction.type_of_bet.name}}</li> 
-          <li class="type-of-bet-name-score" ng-if="prediction.type_of_bet.name == 'Correct Score'">|  {{ prediction.predictionGoalsHomeTeam }} - {{ prediction.predictionGoalsAwayTeam }}</li>
+          <li class="type-of-bet-name-score" ng-if="prediction.type_of_bet.name == 'Correct Score'">|  {{ prediction.predictionGoalsHomeTeam }} - {{ prediction.predictionGoalsAwayTeam }}</li> -->
           <li>
             <div class="tip-accordion">
-              <h5 slide-toggle="#tip-accordion-data"><b>Click here for more</b></h5>
-              <div id="tip-accordion-data" class="slideable">
+              <!-- <h5 slide-toggle="#tip-accordion-data"><b>Click here for more</b></h5> -->
+              <div id="tip-accordion-data" >
+                <!-- class="slideable" -->
                 <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions">
                   <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}}</li>
                   <li class="type-of-bet-name-score">{{prediction.type_of_bet.name}}</li> 

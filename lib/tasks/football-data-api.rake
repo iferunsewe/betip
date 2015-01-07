@@ -1,6 +1,4 @@
-desc "Pulling all of the fixtures from the footballdata.org API"
-task football_data_fixtures: :environment do 
-  class FootballData
+class FootballData
 
     attr_accessor :data
 
@@ -10,20 +8,24 @@ task football_data_fixtures: :environment do
       response = Net::HTTP.get URI(URL)
 
       @data  = JSON(response)
-      return @data
+      insert_into_prediction_table  
     end
 
     def insert_into_prediction_table
       @data.map do |fixture|
         if fixture["date"].to_date > Date.today
-          @newFixture = Prediction.new
-          newPrediction.date = fixture["date"]
-          newPrediction.homeTeam = fixture["homeTeam"]
-          newPrediction.awayTeam = fixture["awayTeam"]
-          newPrediction.save
+          @newFixture = Prediction.create({
+            date: fixture["date"],
+            homeTeam: fixture["homeTeam"],
+            awayTeam: fixture["awayTeam"]
+            })
         end
       end
     end
   end
-  FootballData
+
+
+desc "Pulling all of the fixtures from the footballdata.org API"
+task football_data_fixtures: :environment do 
+  FootballData.new
 end

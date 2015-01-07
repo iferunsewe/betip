@@ -1,6 +1,5 @@
 <h2>Make a tip</h2>
 
-<!-- <submitted-tip></submitted-tip> -->
 <div ng-hide="madeTip">
   <div class="tip-form">
     <h2>Tip</h2>
@@ -24,46 +23,11 @@
           </li>
         </ul>
       </div> 
-    </form>
-  </div>
-
-  <ul class="fixtures-for-tip">
-    <!-- <div ng-repeat="(i, fixture) in fixturesThisWeek track by $index"> -->
-    <!-- Maybe not a form, maybe a repeated input  -->
-    <form name="predictionForm" ng-repeat="fixture in fixturesThisWeek track by fixture.id" ng-submit="addPrediction(predictions, fixture.id); predictionForm.$setPristine " class="form-group">
-      <br />
-      <!-- submitting to addPrediction function which takes in 2 parameters(predictions, fixture.id which we're getting from each individual fixture in fixtureThisWeek) -->
-      <!-- Each fixture is tracked by the fixture id -->
-      <section class="add-prediction">
-        <label for="homeTeam Score">{{ fixture.homeTeam }}</label>
-        <input type="number" ng-model="predictions.scores.predictionGoalsHomeTeam[fixture.id]" class="form-control input-number"> vs 
-        <label for="awayTeam Score">{{ fixture.awayTeam }}</label>
-        <input type="number" ng-model="predictions.scores.predictionGoalsAwayTeam[fixture.id]" class="form-control input-number"> 
-      </section>
-      <section="bet-type">
-        <label for="typeOfBets_id">Bet Type</label>
-        <select ng-model="predictions.typeOfBetId[fixture.id]" class="select-bet-type">
-          <option ng-repeat="typeOfBet in typeOfBets" value="{{typeOfBet.id}}">{{typeOfBet.name}}</option>
-        </select>
-      </section>
-     <button class="btn btn-default add-button">Add</button>
-    </form>
-  </ul>
+    </form> 
+  </div> 
+  <fixtures-for-tip></fixtures-for-tip>
 </div>
 
-<div ng-show="madeTip">
-  <h1>You have submitted your tip!</h1>
-</div>
+<submitted-tip></submitted-tip>
 
-<!-- <div class="modal fade" id="submittedTip" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h1>You have submitted your tip!</h1>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<!-- data-toggle="modal" data-target="#submittedTip" -->
 
