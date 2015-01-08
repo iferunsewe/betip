@@ -28,9 +28,17 @@ $http.post('users/tipsters')
               prediction_id: prediction.id
             }
           }).success(function(data){
+            console.log(data)
             // Looping through each tip to get the predictions on each tip to get the id of each prediction to use to put the prediction through the method result_bet and get their results so I log on the html whether the prediction was won which can then indicate whether the tip was won
           });   
         });
+        $http.post('/tips/tip_won', {
+          tip: {
+            tip_id: tip.id
+          }
+        }).success(function(data){
+          console.log(data)
+        })
       });
     });
   });
