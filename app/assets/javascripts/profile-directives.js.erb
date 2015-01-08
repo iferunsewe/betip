@@ -22,4 +22,20 @@ app.directive('fixturesForTip', function(){
   }
 })
 
+app.directive('tipRecord', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('profile-page/tip-record.html')%>"
+  }
+})
+
+app.directive('subscriptionRequests', function(){
+  return {
+    restrict: 'E',
+    replace: true,
+    templateUrl: "<%= asset_path('profile-page/subscription-requests.html')%>"
+  }
+})
+
 

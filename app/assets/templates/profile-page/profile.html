@@ -6,62 +6,13 @@
   <img src="{{userProfile.user_image.thumb.url}}">
 
   <h4><b>Win Percentage:   </b>{{userProfile.win_percentage}}%</h4>
+  <h4><b>Followers: </b></h4>
     
   <div ng-if="userProfile.user_connections[0].following == null && userProfile.id != currentUser.id"><button class="btn btn-success" ng-click="subscribeTips(userProfile)" >Follow</button></div>
   <h4 ng-if="userProfile.user_connections[0].following == false && userProfile.user_connections[0].customer_id == currentUser.id">Pending</h4>
   <h4 ng-if="tipster.user_connections[0].following == true && tipster.user_connections[0].customer_id == currentUser.id">Following</h4>
   
-  <h3>Tip Record</h3>
-  <table class="table table-bordered" ng-repeat="tip in userTips | orderBy: 'created_at': reverse=true">
+  <tip-record></tip-record>
 
-    <tr>
-      <th class="profile-tip-date">Date</th>
-      <th class="profile-tip-bookies">Bookies</th>
-      <th>Predictions</th>
-      <th>Status</th>
-    </tr>
-
-    <tr>
-      <td>{{ tip.created_at | date : "dd/MM/yy"}}</td>
-      <td>{{ tip.bookies }}</td>
-      <td>
-        <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions | limitTo : 1">
-          <!-- <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}}...</li>
-          <li class="type-of-bet-name-score">{{prediction.type_of_bet.name}}</li> 
-          <li class="type-of-bet-name-score" ng-if="prediction.type_of_bet.name == 'Correct Score'">|  {{ prediction.predictionGoalsHomeTeam }} - {{ prediction.predictionGoalsAwayTeam }}</li> -->
-          <li>
-            <div class="tip-accordion">
-              <!-- <h5 slide-toggle="#tip-accordion-data"><b>Click here for more</b></h5> -->
-              <div id="tip-accordion-data" >
-                <!-- class="slideable" -->
-                <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions">
-                  <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}}</li>
-                  <li class="type-of-bet-name-score">{{prediction.type_of_bet.name}}</li> 
-                  <li class="type-of-bet-name-score" ng-if="prediction.type_of_bet.name == 'Correct Score'">|  {{ prediction.predictionGoalsHomeTeam }} - {{ prediction.predictionGoalsAwayTeam }}</li>
-                </ul>
-                <br/>
-                <p>
-                  {{tip.comment}}
-                </p>
-              </div>
-            </div>
-          </li>
-        </ul>
-      </td>
-      <td></td>
-      <!-- <td ng-if="tip.won == true">Won</td>
-      <td ng-if="tip.won == false">Lost</td> -->
-    </tr>
-  </table>
-
-  <div ng-if="userProfile.data.id == currentUser.id">
-    <h3>Subscription Requests</h3>
-    <div ng-repeat="f in follower | limitTo : 3">
-      <div ng-if="f.following == false">
-        <p>{{f.customer_name}}</p>
-        <button ng-click="acceptSubscription(f)" class="btn btn-success">Accept</button>
-        <button ng-click="rejectSubscription(f)" class="btn btn-danger">Reject</button>
-      </div>
-    </div>
-  </div>
+  <subscription-requests></subscription-requests>
 </div>  

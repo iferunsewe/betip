@@ -27,8 +27,9 @@ class TipsController < ApplicationController
     @tip.save
     params[:prediction].each do |p|
       @prediction = Prediction.find(p[:fixtureId])
-      @prediction.predictionGoalsHomeTeam = p[:predictionGoalsHomeTeam]
-      @prediction.predictionGoalsAwayTeam = p[:predictionGoalsAwayTeam]
+      # @prediction.predictionGoalsHomeTeam = p[:predictionGoalsHomeTeam]
+      # @prediction.predictionGoalsAwayTeam = p[:predictionGoalsAwayTeam]
+      @prediction.type_of_bet_id = p[:typeOfBet].to_i
       @prediction.save
       @tip.predictions << @prediction
     end

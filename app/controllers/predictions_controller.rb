@@ -57,8 +57,8 @@ class PredictionsController < ApplicationController
   # Method to check the result of the prediction made
   def result_bet
     @prediction = Prediction.find(params[:prediction][:prediction_id])
-    predictionHomeTeam = @prediction.predictionGoalsHomeTeam
-    predictionAwayTeam = @prediction.predictionGoalsAwayTeam
+    # predictionHomeTeam = @prediction.predictionGoalsHomeTeam
+    # predictionAwayTeam = @prediction.predictionGoalsAwayTeam
     resultHomeTeam = @prediction.result.goalsHomeTeam  
     resultAwayTeam = @prediction.result.goalsAwayTeam
     resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
@@ -75,7 +75,7 @@ class PredictionsController < ApplicationController
     @over5_5 = typeOfBetId == 10 && (resultTotalNumberOfGoals > 5.5)
     @over6_5 = typeOfBetId == 11 && (resultTotalNumberOfGoals > 6.5)
     @over7_5 = typeOfBetId == 12 && (resultTotalNumberOfGoals > 7.5)
-    @correctScore = typeOfBetId == 13 && (predictionHomeTeam == resultHomeTeam && predictionAwayTeam == resultAwayTeam)
+    # @correctScore = typeOfBetId == 13 && (predictionHomeTeam == resultHomeTeam && predictionAwayTeam == resultAwayTeam)
     # @prediction.result.betWon = true = (@prediction.result.betWon = true)
     # @prediction.result.betWon = false = (@prediction.result.betWon = false)
     have_they_won?
@@ -108,8 +108,8 @@ class PredictionsController < ApplicationController
       @prediction.result.betWon = true
     elsif @over7_5
       @prediction.result.betWon = true
-    elsif @correctScore
-      @prediction.result.betWon = true
+    # elsif @correctScore
+    #   @prediction.result.betWon = true
     else
       @prediction.result.betWon = false
     end

@@ -166,10 +166,20 @@ html{
         ul{
           padding-left: 0;
         }
+        .bookies{
+          display: inline;
+          width: 70%;
+        }
+        .odds{
+          display:inline;
+          width: 25%;
+          margin-left: 3%;
+        }
       }      
       .add-prediction{
         padding-left: initial;
         font-size: 10px;
+        text-align: center;
         .line-input-numbers{
           display:inline;
           .input-number{
@@ -179,7 +189,9 @@ html{
         }
       }
       .select-bet-type{
-        color: black;
+        display: inline-block;
+        width: 24%;
+        font-size: 10px;
       }
       button{
         color: black;

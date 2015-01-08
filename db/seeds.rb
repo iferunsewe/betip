@@ -22,7 +22,7 @@ tb9 = TypeOfBet.create!(name: "Over 4.5 goals")
 tb10 = TypeOfBet.create!(name: "Over 5.5 goals")
 tb11 = TypeOfBet.create!(name: "Over 6.5 goals")
 tb12 = TypeOfBet.create!(name: "Over 7.5 goals")
-tb13 = TypeOfBet.create!(name: "Correct Score")
+# tb13 = TypeOfBet.create!(name: "Correct Score")
 
 # p1 = Prediction.create!(homeTeam: "Chelsea", awayTeam: "Arsenal", date: DateTime.parse("10/01/2015 15:00"), type_of_bet_id: tb1.id)
 # p2 = Prediction.create!(homeTeam: "Liverpool", awayTeam: "Everton", date: DateTime.parse("10/01/2015 15:00"), predictionGoalsHomeTeam: 1, predictionGoalsAwayTeam: 1, type_of_bet_id: tb13.id)

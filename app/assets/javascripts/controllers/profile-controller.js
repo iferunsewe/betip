@@ -4,9 +4,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
 
 
 //getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
+$http.post('users/tipsters')
   $http.get('/users/tipsters').success(function(data) {
+    console.log(angular.fromJson(data.data))
     $scope.tipsters = angular.fromJson(data.data) //had to use angular.fromJson as data was coming back as a string.
-  })
+  });
 
 //getting all of the info for the users profile page, have to delve even deeper to get their tips, the predictions on the tip and the type of bet of the prediction.
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
@@ -16,6 +18,7 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
         user_id: $scope.userProfile.id
       }
     }).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
+    console.log(data)
       $scope.userTips = angular.fromJson(data.data)
       //Json data coming back from the controller was being passed as a string, so i used the angular function angular.fromJson() to parse the string back into an object and stored it in $scope.userTips to make it accessible.
       angular.forEach($scope.userTips, function(tip){
@@ -26,7 +29,6 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
             }
           }).success(function(data){
             // Looping through each tip to get the predictions on each tip to get the id of each prediction to use to put the prediction through the method result_bet and get their results so I log on the html whether the prediction was won which can then indicate whether the tip was won
-            console.log(data.data)
           });   
         });
       });
@@ -51,10 +53,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', function($
         console.log(data)
       $http.post('/user_connections/followed_tipster', {
         tipster: {
-          tipster_id: tipster.id
-        }}).success(function(response){
+          tipster_id: tipster.id,
+          customer_id: $scope.currentUser.id
+        }
+      }).success(function(response){
           console.log(response)
-        $scope.pending = response.data[0];
         $http.get('/users/tipsters').success(function(data) {//this last get request changes the button to prnding without refreshing as you get the tipster's info again and reassign with the updated information.  will be stored as $scope.tipsters so will replace the original $scope.tipsters with the older data
           $scope.tipsters = angular.fromJson(data.data) //now the data is objects of user connections
         });

@@ -13,7 +13,6 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
 
   //getting the top three tipsters on the website 
   $http.get('/users/top_three').success(function(response) {
-    console.log(response)
     $scope.first = response.data[0]
     $scope.second = response.data[1]
     $scope.third = response.data[2]
@@ -45,12 +44,15 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
   $scope.makeTip = function(tip){
     data = {
       tip: { 
-        bookies: tip.bookies, 
+        bookies: tip.bookies,
+        comment: tip.comment, 
+        odds: tip.odds,
         user_id: $scope.currentUser.id
       }, 
       prediction: $scope.madePredictions
     },
     $http.post('/tips.json', data).success(function(data, tip){
+      console.log(data)
       $scope.madeTip = tip;//used to switch page to tell users they've made a tip
     });
   };
@@ -64,16 +66,17 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
     data = {};
     data.fixtureId = fixtureId;
     // if ( prediction.scores.predictionGoalsHomeTeam[fixtureId] != null ) {
-      data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId]
+      // data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId]
     // } else {
     //   data.predictionGoalsHomeTeam = -1
     // }
     // if ( prediction.scores.predictionGoalsAwayTeam[fixtureId] != null ) {
-      data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId]
+      // data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId]
     // } else {
     //   data.predictionGoalsAwayTeam = -1
     // }
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
+    console.log(data)
     $scope.madePredictions.push(data);
   }
 }]);
