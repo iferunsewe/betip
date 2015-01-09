@@ -59,7 +59,7 @@ class PredictionsController < ApplicationController
     @prediction = Prediction.find(params[:prediction][:prediction_id])
     # predictionHomeTeam = @prediction.predictionGoalsHomeTeam
     # predictionAwayTeam = @prediction.predictionGoalsAwayTeam
-
+    if @prediction.result.goalsHomeTeam != nil
     resultHomeTeam = @prediction.result.goalsHomeTeam 
     resultAwayTeam = @prediction.result.goalsAwayTeam
     resultTotalNumberOfGoals = (resultHomeTeam + resultAwayTeam)
@@ -80,6 +80,7 @@ class PredictionsController < ApplicationController
     # @prediction.result.betWon = true = (@prediction.result.betWon = true)
     # @prediction.result.betWon = false = (@prediction.result.betWon = false)
     have_they_won?
+    end
 
     render json: { data:  @prediction }.to_json
   end

@@ -30,6 +30,7 @@ class TipsController < ApplicationController
       # @prediction.predictionGoalsHomeTeam = p[:predictionGoalsHomeTeam]
       # @prediction.predictionGoalsAwayTeam = p[:predictionGoalsAwayTeam]
       @prediction.type_of_bet_id = p[:typeOfBet].to_i
+      @prediction.save
       @tip.predictions << @prediction
     end
     respond_with(@tip)
@@ -49,8 +50,10 @@ class TipsController < ApplicationController
     end 
     if @prediction.all?
       @tip.won = true
-    else
+    elsif @prediction.include? false
       @tip.won = false
+    else
+      @tip.won = nil
     end
     @tip.save
     render json: { data: @tip }.to_json
