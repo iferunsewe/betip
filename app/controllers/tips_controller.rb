@@ -44,13 +44,18 @@ class TipsController < ApplicationController
   # Method to see whether all of the predictions on a tip are won or not and if they are, this will set the tip to won
   def tip_won
     @tip = Tip.find(params[:tip][:tip_id])
-    if @tip.predictions.map do |prediction|
-      prediction.result.betWon == true
-      end
+    @prediction = []
+    @tip.predictions.each do |prediction|
+      @prediction.push(prediction.result.betWon)
+    end 
+    if @prediction.all?
       @tip.won = true
-    else
+    elsif @prediction.include? false
       @tip.won = false
+    else
+      @tip.won = nil
     end
+    @tip.save
     render json: { data: @tip }.to_json
   end
 

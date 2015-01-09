@@ -8,6 +8,7 @@ class CreatePredictions < ActiveRecord::Migration
       t.integer :predictionGoalsAwayTeam
       t.integer :type_of_bet_id
       t.integer :user_id
+      t.integer :fixture_id
 
       t.timestamps
     end

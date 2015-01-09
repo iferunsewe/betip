@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(:version => 20141230164250) do
     t.integer  "predictionGoalsAwayTeam"
     t.integer  "type_of_bet_id"
     t.integer  "user_id"
+    t.integer  "fixture_id"
     t.datetime "created_at",              :null => false
     t.datetime "updated_at",              :null => false
   end
