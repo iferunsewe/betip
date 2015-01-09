@@ -15,10 +15,13 @@ class FootballData
       @data.map do |fixture|
         if fixture["date"].to_date > Date.today
           @newFixture = Prediction.create({
+            fixture_id: fixture["id"],
             date: fixture["date"],
             homeTeam: fixture["homeTeam"],
             awayTeam: fixture["awayTeam"]
             })
+          @newFixture.build_result
+          @newFixture.save
         end
       end
     end

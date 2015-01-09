@@ -7,4 +7,5 @@ class Tip < ActiveRecord::Base
   belongs_to :user
 
   accepts_nested_attributes_for :predictions
+  accepts_nested_attributes_for :results
 end

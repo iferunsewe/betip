@@ -30,7 +30,6 @@ class TipsController < ApplicationController
       # @prediction.predictionGoalsHomeTeam = p[:predictionGoalsHomeTeam]
       # @prediction.predictionGoalsAwayTeam = p[:predictionGoalsAwayTeam]
       @prediction.type_of_bet_id = p[:typeOfBet].to_i
-      @prediction.save
       @tip.predictions << @prediction
     end
     respond_with(@tip)
@@ -43,15 +42,17 @@ class TipsController < ApplicationController
 
   # Method to see whether all of the predictions on a tip are won or not and if they are, this will set the tip to won
   def tip_won
-    binding.pry
     @tip = Tip.find(params[:tip][:tip_id])
-    if @tip.predictions.map do |prediction|
-      prediction.result.betWon == true
-      end
+    @prediction = []
+    @tip.predictions.each do |prediction|
+      @prediction.push(prediction.result.betWon)
+    end 
+    if @prediction.all?
       @tip.won = true
     else
       @tip.won = false
     end
+    @tip.save
     render json: { data: @tip }.to_json
   end
 
