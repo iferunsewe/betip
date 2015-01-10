@@ -1,4 +1,4 @@
-app.controller('homeController', ['$scope','$routeParams','$http', function($scope, $routeParams, $http){
+app.controller('homeController', ['$scope','$routeParams','$http', '$route', function($scope, $routeParams, $http, $route){
   $scope.currentUser = currentUser
   $scope.currentTip = currentTip
   $scope.madePredictions = [];
@@ -53,6 +53,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
     },
     $http.post('/tips.json', data).success(function(data, tip){
       $scope.madeTip = tip;//used to switch page to tell users they've made a tip
+      $route.reload();
     });
     $http.get('/tips.json').success(function(data){
       console.log(data)

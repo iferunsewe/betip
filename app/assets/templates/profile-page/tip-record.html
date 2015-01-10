@@ -10,7 +10,12 @@
     </tr>
 
     <tr>
-      <td>{{ tip.created_at | date : "dd/MM/yy"}}</td>
+      <td>
+        {{ tip.created_at | date : "dd/MM/yy"}}
+        <br>
+        <br>
+        <!-- <button class="btn btn-danger" ng-click="deleteTip(tip)">Delete</button> -->
+      </td>
       <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
       <td>
         <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions | limitTo : 1">

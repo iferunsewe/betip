@@ -9,7 +9,23 @@ class UsersController < ApplicationController
     @tipster = User.where(role: "Tipster")
     @customer = User.where(role: "Customer")
     @users = User.all.to_json
+    calc_win_percentage
     respond_with(@users)
+  end
+
+  def calc_win_percentage
+    @users.map do |user|
+      tips = user.tips.count.to_f
+      tips_won = user.tips.where({:won => true}).count.to_f 
+      if tips > 0
+        win_percentag = (tips_won/tips)*100
+        user[:win_percentage] = win_percentag
+      else
+        user[:win_percentage] = 0
+      end
+      user.save
+    end
+    @users.save
   end
 
   def create
@@ -90,11 +106,11 @@ class UsersController < ApplicationController
 
   def profile_tips 
     @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
+
     render json: { data: @userTips }.to_json
   end
 
   def profile_predictions
-    # binding.pry
     @userPredictions = Prediction.find(params[:predictions][:tip_id])
     render json: { data: @userPredictions }.to_json
   end
