@@ -22,12 +22,6 @@ class User < ActiveRecord::Base
     self.role.to_s == role_to_compare.to_s
   end
 
-  # def tip_predictions(user)
-  #   user.tips.each do |tip|
-  #     puts tip.predictions
-  #   end
-  # end
-
   def self.map_authentication_to_user_properties(authentication)
     authentication.slice(:info, :provider, :uid, :user_id)
   end
@@ -61,10 +55,10 @@ class User < ActiveRecord::Base
     end
   end
 
-  # before_create :default_win_percentage
+  before_create :default_win_percentage
 
-  # private
-  # def default_win_percentage
-  #   self.win_percentage = 0
-  # end
+  private
+  def default_win_percentage
+    self.win_percentage = 0
+  end
 end

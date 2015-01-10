@@ -100,7 +100,7 @@ class UsersController < ApplicationController
   end
 
   # Method to work out the win percentage of a user which be used on the output page
-  def win_ratio(user)
+  def win_ratio
     tips = user.tips.count.to_f
     numberOfTipsWon = (Tip.joins(:user).where({:won => true}, {user_id: user.id})).count.to_f
     winRatio = ((numberOfTipsWon / tips) * 100)
