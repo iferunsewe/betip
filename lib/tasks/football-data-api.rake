@@ -29,6 +29,6 @@ class FootballData
 
 
 desc "Pulling all of the fixtures from the footballdata.org API"
-task football_data_fixtures: :environment do 
+task fixtures: :environment do 
   FootballData.new
 end

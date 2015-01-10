@@ -1,3 +1,21 @@
 <div ng-show="madeTip">
   <h1>You have submitted your tip!</h1>
+  <table class="table table-bordered">
+    <tr>
+      <th>Date</th>
+      <th>Home Team</th>
+      <th>Away Team</th>
+      <th>Prediction</th>
+    </tr>
+    <tr ng-repeat="prediction in lastTip.predictions">
+      <td>{{ prediction.date | date : "dd/MM/yy H:mm" }}</td>
+      <td>{{ prediction.homeTeam }}</td>
+      <td>{{ prediction.awayTeam }}</td>
+      <td>{{ prediction.type_of_bet.name }}</td>
+    </tr>
+  </table>
+  <p>
+    <b>Best Bookies: </b>{{ lastTip.bookies }} offer {{ lastTip.odds }} <br><br>
+    <b>Comment: </b> {{ lastTip.comment }} <br><br>
+  </p>
 </div>

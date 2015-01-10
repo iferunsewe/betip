@@ -20,7 +20,6 @@ $http.post('users/tipsters')
     }).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
     
       $scope.userTips = angular.fromJson(data.data)
-      console.log($scope.userTips, 'ut')
       //Json data coming back from the controller was being passed as a string, so i used the angular function angular.fromJson() to parse the string back into an object and stored it in $scope.userTips to make it accessible.
       angular.forEach($scope.userTips, function(tip){
         angular.forEach(tip.predictions, function(prediction){
@@ -29,7 +28,6 @@ $http.post('users/tipsters')
               prediction_id: prediction.id
             }
           }).success(function(data){
-            console.log(data)
             // Looping through each tip to get the predictions on each tip to get the id of each prediction to use to put the prediction through the method result_bet and get their results so I log on the html whether the prediction was won which can then indicate whether the tip was won
           });   
           $http.post('/tips/tip_won', {
@@ -44,6 +42,7 @@ $http.post('users/tipsters')
 
   //get method to get all of the user connections for a subscription request
   $http.get('/user_connections/subscription_requests').success(function(response){
+    console.log(response)
     $scope.follower = response.data; 
   });
 

@@ -16,6 +16,9 @@
 
   <% if current_user %>
     <%= render "layouts/navbar/navloggedin" %>
+    <div class="prem-photo">
+      <%= image_tag randomized_background_image %>
+    </div>
     <div ng-view class="inner-body"></div>
   <% else %>
     <div class="welcome-page">
@@ -23,8 +26,10 @@
       <h1 class="welcome-page-h1">betip</h1>
       <!-- <h4 class="welcome-page-h4">How does it work?<h4> -->
     </div>
+    
   <%end %>
-
+  <footer class="footer">
+  </footer>
 
 
   <% if current_user.present? %>

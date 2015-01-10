@@ -8,7 +8,7 @@
   <h4><b>Win Percentage:   </b>{{userProfile.win_percentage}}%</h4>
   <h4><b>Followers: </b></h4>
     
-  <div ng-if="userProfile.user_connections[0].following == null && userProfile.id != currentUser.id"><button class="btn btn-success" ng-click="subscribeTips(userProfile)" >Follow</button></div>
+  <div ng-if="userProfile.user_connections[0].following == null && userProfile.id != currentUser.id"><button class="btn btn-success follow-button" ng-click="subscribeTips(userProfile)" >Follow</button></div>
   <h4 ng-if="userProfile.user_connections[0].following == false && userProfile.user_connections[0].customer_id == currentUser.id">Pending</h4>
   <h4 ng-if="tipster.user_connections[0].following == true && tipster.user_connections[0].customer_id == currentUser.id">Following</h4>
   

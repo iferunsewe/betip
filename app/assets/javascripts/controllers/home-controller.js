@@ -52,8 +52,11 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
       prediction: $scope.madePredictions
     },
     $http.post('/tips.json', data).success(function(data, tip){
-      console.log(data)
       $scope.madeTip = tip;//used to switch page to tell users they've made a tip
+    });
+    $http.get('/tips.json').success(function(data){
+      console.log(data)
+      $scope.lastTip = data[data.length - 1]
     });
   };
   
@@ -65,16 +68,6 @@ app.controller('homeController', ['$scope','$routeParams','$http', function($sco
   $scope.addPrediction = function(prediction, fixtureId) {
     data = {};
     data.fixtureId = fixtureId;
-    // if ( prediction.scores.predictionGoalsHomeTeam[fixtureId] != null ) {
-      // data.predictionGoalsHomeTeam = prediction.scores.predictionGoalsHomeTeam[fixtureId]
-    // } else {
-    //   data.predictionGoalsHomeTeam = -1
-    // }
-    // if ( prediction.scores.predictionGoalsAwayTeam[fixtureId] != null ) {
-      // data.predictionGoalsAwayTeam = prediction.scores.predictionGoalsAwayTeam[fixtureId]
-    // } else {
-    //   data.predictionGoalsAwayTeam = -1
-    // }
     data.typeOfBet = prediction.typeOfBetId[fixtureId];
     console.log(data)
     $scope.madePredictions.push(data);

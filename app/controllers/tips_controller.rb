@@ -6,7 +6,7 @@ class TipsController < ApplicationController
   skip_before_filter :verify_authenticity_token
 
   def index
-    @tips = Tip.all.to_json(:include => :predictions)
+    @tips = Tip.all.to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
     respond_with(@tips)
   end
 
