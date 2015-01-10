@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     respond_with(@users)
   end
 
+  # Method to work out the win percentage of a user which be used on the output page
   def calc_win_percentage
     @users.map do |user|
       tips = user.tips.count.to_f
@@ -113,12 +114,5 @@ class UsersController < ApplicationController
   def profile_predictions
     @userPredictions = Prediction.find(params[:predictions][:tip_id])
     render json: { data: @userPredictions }.to_json
-  end
-
-  # Method to work out the win percentage of a user which be used on the output page
-  def win_ratio
-    tips = user.tips.count.to_f
-    numberOfTipsWon = (Tip.joins(:user).where({:won => true}, {user_id: user.id})).count.to_f
-    winRatio = ((numberOfTipsWon / tips) * 100)
   end
 end

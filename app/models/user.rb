@@ -54,11 +54,4 @@ class User < ActiveRecord::Base
       end
     end
   end
-
-  before_create :default_win_percentage
-
-  private
-  def default_win_percentage
-    self.win_percentage = 0
-  end
 end
