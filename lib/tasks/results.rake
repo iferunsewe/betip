@@ -18,6 +18,7 @@ class ResultData
         @newFixture.each do |newFixture|
           newFixture.result.update_attributes(goalsHomeTeam: fixture["goalsHomeTeam"], goalsAwayTeam: fixture["goalsAwayTeam"])
         end
+        @newFixture.save
       end
     end
   end
