@@ -23,23 +23,18 @@ app.controller('homeController', ['$scope','$routeParams','$http', '$route', fun
   });
 
   //using controller action 'followed tips' to get the tips of a tipster that a customer follows
-  $http.get('/users/followed_tips.json').success(function(data){
-    $scope.followedTips = data
+  $http.get('/users/followed_tipsters.json').success(function(data){
+    $scope.followedTipsters = data.data
+    angular.forEach($scope.followedTipsters, function(tipster){
+      $http.post('/users/profile_tips.json', {
+        tip: { 
+          user_id: tipster.id
+        }
+      }).success(function(data){
+        $scope.followedTips = angular.fromJson(data.data)
+      });
+    });
   });
-
-  // $http.get('/users/followed_users.json').success(function(data){
-  //   $scope.followedUsers = data.data
-  //   angular.forEach($scope.followedUsers, function(user){
-  //     $http.post('/users/followed_tips.json', {
-  //       tip: { 
-  //         user_id: user.id
-  //       }
-  //     }).success(function(data){
-  //       console.log(data)
-  //     });
-  //   });
-  // });
-
 
   $scope.makeTip = function(tip){
     data = {
@@ -53,10 +48,8 @@ app.controller('homeController', ['$scope','$routeParams','$http', '$route', fun
     },
     $http.post('/tips.json', data).success(function(data, tip){
       $scope.madeTip = tip;//used to switch page to tell users they've made a tip
-      $route.reload();
     });
     $http.get('/tips.json').success(function(data){
-      console.log(data)
       $scope.lastTip = data[data.length - 1]
     });
   };
@@ -67,10 +60,21 @@ app.controller('homeController', ['$scope','$routeParams','$http', '$route', fun
 
   //Updating the scores the dependent of on the type of bet id
   $scope.addPrediction = function(prediction, fixtureId) {
-    data = {};
-    data.fixtureId = fixtureId;
-    data.typeOfBet = prediction.typeOfBetId[fixtureId];
-    console.log(data)
-    $scope.madePredictions.push(data);
+    $http.get('/predictions/' + fixtureId + '.json').success(function(data){
+      $scope.fixtureDetails = data
+    }).success(function(data){
+      $scope.typeOfBetId = parseInt(prediction.typeOfBetId[fixtureId]);
+      $http.get('/type_of_bets/' + $scope.typeOfBetId + '.json').success(function(data){
+        $scope.typeOfBetName = data.name
+      }).success(function(data){
+        data = {};
+        data.fixtureId = fixtureId;
+        data.typeOfBet = $scope.typeOfBetId
+        data.homeTeam = $scope.fixtureDetails.homeTeam
+        data.awayTeam = $scope.fixtureDetails.awayTeam
+        data.typeOfBetName = $scope.typeOfBetName
+        $scope.madePredictions.push(data);
+      })
+    });
   }
 }]);

@@ -18,23 +18,14 @@
       </td>
       <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
       <td>
-        <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions | limitTo : 1">
+        <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
           <li>
-            <div class="tip-accordion">
-              <!-- <h5 slide-toggle="#tip-accordion-data"><b>Click here for more</b></h5> -->
-              <div id="tip-accordion-data" >
-                <!-- class="slideable" -->
-                <ul class="profile-tip-predictions-data" ng-repeat="prediction in tip.predictions">
-                  <li>{{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}}</li>
-                </ul>
-                <br/>
-                <p>
-                  {{tip.comment}}
-                </p>
-              </div>
-            </div>
+            {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}}
           </li>
         </ul>
+        <p>
+          {{tip.comment}}
+        </p>
       </td>
       <td ng-if="tip.won == true">Won</td>
       <td ng-if="tip.won == false">Lost</td>

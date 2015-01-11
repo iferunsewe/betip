@@ -58,7 +58,8 @@ $http.get('/users/tipsters').success(function(data) {
         customer_id: $scope.currentUser.id, 
         customer_name: $scope.currentUser.name, 
         following: $scope.followingDefault
-      }}).success(function(data){
+      }
+    }).success(function(data){
       $http.post('/user_connections/followed_tipster', {
         tipster: {
           tipster_id: tipster.id,

@@ -1,42 +1,43 @@
-<h2>Hot Tipsters</h2>
+<div class="hot-tipsters">
+  <h2>Hot Tipsters</h2>
 
-<div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-  <!-- Indicators -->
-  <ol class="carousel-indicators">
-    <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-    <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-  </ol>
- 
-  <!-- Wrapper for slides -->
+  <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
+      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
+    </ol>
+   
+    <!-- Wrapper for slides -->
 
-  <div class="carousel-inner">
-    <div class="item active carousel-active">
-      <h3><a href="/betip/profile/{{first.id}}">{{ first.name }}</a></h3>
-      <img class="carousel-image" src="{{first.user_image.url}}">
-      <p><b>Win Percentage: </b>{{ first.win_percentage }}%</p>
+    <div class="carousel-inner">
+      <div class="item active carousel-active">
+        <h3><a href="/betip/profile/{{first.id}}">{{ first.name }}</a></h3>
+        <img class="carousel-image" src="{{first.user_image.url}}">
+        <p><b>Win Percentage: </b>{{ first.win_percentage }}%</p>
+      </div>
+      <div class="item carousel-active">
+        <h3><a href="/betip/profile/{{second.id}}">{{ second.name }}</a></h3>
+        <img class="carousel-image" src="{{second.user_image.thumb.url}}">
+        <p><b>Win Percentage: </b>{{ second.win_percentage }}%</p>
+      </div>
+      <div class="item carousel-active">
+        <h3><a href="/betip/profile/{{third.id}}">{{ third.name }}</a></h3>
+        <img class="carousel-image" src="{{third.user_image.thumb.url}}">
+        <p><b>Win Percentage: </b>{{ third.win_percentage }}%</p>
+      </div>
     </div>
-    <div class="item carousel-active">
-      <h3><a href="/betip/profile/{{second.id}}">{{ second.name }}</a></h3>
-      <img class="carousel-image" src="{{second.user_image.thumb.url}}">
-      <p><b>Win Percentage: </b>{{ second.win_percentage }}%</p>
-    </div>
-    <div class="item carousel-active">
-      <h3><a href="/betip/profile/{{third.id}}">{{ third.name }}</a></h3>
-      <img class="carousel-image" src="{{third.user_image.thumb.url}}">
-      <p><b>Win Percentage: </b>{{ third.win_percentage }}%</p>
-    </div>
-  </div>
- 
-  <!-- Controls -->
-  <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
-    <span class="glyphicon glyphicon-chevron-left"></span>
-  </a>
-  <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
-    <span class="glyphicon glyphicon-chevron-right"></span>
-  </a>
-</div> 
-
+   
+    <!-- Controls -->
+    <a class="left carousel-control" href="#carousel-example-generic" role="button" data-slide="prev">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+    <a class="right carousel-control" href="#carousel-example-generic" role="button" data-slide="next">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </div> 
+</div>
 
 <followed-tips></followed-tips>
 <todays-fixtures></todays-fixtures>

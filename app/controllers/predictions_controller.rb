@@ -22,15 +22,8 @@ class PredictionsController < ApplicationController
     render json: { data: @fixturesThisWeek }.to_json
   end
 
-  # Method to select all of correct predictions, which may used to work out the win ratio for a user
-  def correct_prediction
-    @predictions = Prediction.all
-    @correctPredictions = @predictions.select do |prediction|
-      prediction.result.betWon == true
-    end
-  end
-
   def show
+    @prediction = Prediction.find(params[:id])
     respond_with(@prediction)
   end
 
@@ -121,5 +114,4 @@ class PredictionsController < ApplicationController
     def set_prediction
       @prediction = Prediction.find(params[:id])
     end
-
 end

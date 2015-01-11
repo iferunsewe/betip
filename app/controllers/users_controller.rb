@@ -56,43 +56,16 @@ class UsersController < ApplicationController
   end
 
   # Method to get the tips of the people you follow
-  def followed_tips
-    # @followedTips = current_user.reverse_user_connections.map do |user|
-    #   User.find(user.tipster_id).to_json(:include => [:tips => {:include => {:predictions => {:include => {:type_of_bet => {:only => :name}}}}}])
-    #   end
-    # @followedTips = current_user.reverse_user_connections.map do |user|
-    #   tips = Tip.where(user_id:user.tipster_id).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
-    #   tips
-    # end
-    @followedTips = current_user.reverse_user_connections.map do |user|
-      # get the people the current user follows
-      User.find(user.tipster_id).tips.map do |tip|
-        tip.predictions.map do |prediction|
-          attrs = prediction.attributes #.attributes converts the object to a hash
-          attrs[:type_of_bet_name] = prediction.type_of_bet.name
-          # attrs[:user] = user.attributes 
-          # attrs[:tip] = tip.attributes
-          # if attrs["date"].to_date > Date.today
-            attrs
-          # end
-        end
-      end  
-    end.flatten
-    render json: { data: @followedTips }.to_json
+  def followed_tipsters
+    @followedTipsters = current_user.reverse_user_connections.map do |connection|
+      follow = Hash.new
+      follow[:id] = connection.tipster_id
+      follow[:name] = connection.tipster_name
+      follow
+    end
+    render json: { data: @followedTipsters }.to_json
   end
 
-  # def followed_users
-  #   @followedUsers = current_user.reverse_user_connections.map do |user|
-  #     User.where(id: user.tipster_id)
-  #   end
-  #   render json: { data: @followedUsers }.to_json
-  # end
-
-  # def followed_tips
-  #   @followedTips = Tip.where(user_id: params[:tip][:user_id]).to_json
-  #   render json: { data: @followedTips }.to_json
-  # end
-  
   # Method to get all of the tipsters on the website so this can be used for the leadertable board
   def tipsters
     @tipsters = User.where(role: "Tipster").to_json(:include => :user_connections)# the include is needed for the following button
@@ -107,7 +80,6 @@ class UsersController < ApplicationController
 
   def profile_tips 
     @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
-
     render json: { data: @userTips }.to_json
   end
 

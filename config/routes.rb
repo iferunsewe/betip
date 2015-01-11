@@ -28,7 +28,7 @@ Betip::Application.routes.draw do
 
   match 'users/top_three' => 'users#top_three'
 
-  match 'users/followed_tips' => 'users#followed_tips'
+  match 'users/followed_tipsters' => 'users#followed_tipsters'
 
   match 'users/users_profile/:id' => 'users#users_profile'
 

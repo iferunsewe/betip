@@ -5,7 +5,6 @@ class UserConnectionsController < ApplicationController
   respond_to :html, :json
 
   def index
-    
     @connections = UserConnection.all
     respond_with(@connections)
   end
