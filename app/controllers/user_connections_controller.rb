@@ -35,7 +35,7 @@ class UserConnectionsController < ApplicationController
 
   # Method to see find the users which have been followed so it change their status to pending
   def followed_tipster
-    @followed_tipster = @followed_tipster = UserConnection.where(customer_id: params[:tipster][:customer_id])
+    @followed_tipster = UserConnection.where(customer_id: params[:tipster][:customer_id])
     render json: { data: @followed_tipster }.to_json
   end
 

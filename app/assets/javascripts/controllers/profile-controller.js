@@ -3,12 +3,6 @@ app.controller('profileController', ['$scope','$routeParams','$http', '$route', 
   $scope.followingDefault = false
   $scope.dateNow = new Date();
 
-
-//getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
-$http.get('/users/tipsters').success(function(data) {
-  $scope.tipsters = angular.fromJson(data.data) //had to use angular.fromJson as data was coming back as a string.
-});
-
 //getting all of the info for the users profile page, have to delve even deeper to get their tips, the predictions on the tip and the type of bet of the prediction.
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
     $scope.userProfile = angular.fromJson(data.data)
@@ -46,7 +40,14 @@ $http.get('/users/tipsters').success(function(data) {
 
   //get method to get all of the user connections for a subscription request
   $http.get('/user_connections/subscription_requests').success(function(response){
+    console.log(response)
     $scope.follower = response.data; 
+  });
+
+  //getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
+  $http.get('/users/tipsters').success(function(data) {
+    console.log(angular.fromJson(data.data))
+    $scope.tipsters = angular.fromJson(data.data) //had to use angular.fromJson as data was coming back as a string.
   });
 
   //posting all of the info for a user connection
@@ -67,14 +68,43 @@ $http.get('/users/tipsters').success(function(data) {
         }
       }).success(function(response){
         $http.get('/users/tipsters').success(function(data) {//this last get request changes the button to prnding without refreshing as you get the tipster's info again and reassign with the updated information.  will be stored as $scope.tipsters so will replace the original $scope.tipsters with the older data
+          
           $scope.tipsters = angular.fromJson(data.data) //now the data is objects of user connections
         });
+        // $http.post('/users/check_following', {
+        //   tipster: {
+        //     tipster_id: tipster.id
+        //   }
+        // }).success(function(data){
+        //   console.log(angular.fromJson(data.data))
+        // $scope.checkedTipster = angular.fromJson(data.data)
+        //   if($scope.checkedTipster.user_connections.length == 1){
+        //     $scope.checkedTipsterConnections = $scope.checkedTipster[0]
+        //   } else {
+        //     $scope.checkedTipsterConnections = $scope.checkedTipster.user_connections[$scope.checkedTipster.user_connections.length - 1]
+        //   }
+        //   console.log($scope.checkedTipsterConnections)
+        // });
         $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
           $scope.userProfile = angular.fromJson(data.data)
         });
       })
     });
   }
+
+  // $scope.subscribeTips = function(tipster, userProfile){
+  //   $http.post('/user_connections.json', {
+  //     user_connection: {
+  //       tipster_id: tipster.id || userProfile.id, 
+  //       tipster_name: tipster.name || userProfile.name, 
+  //       customer_id: $scope.currentUser.id, 
+  //       customer_name: $scope.currentUser.name, 
+  //       following: $scope.followingDefault
+  //     }
+  //   }).success(function(data){
+
+  //   })
+  // });
 
   //accepting the subscription request
   $scope.acceptSubscription = function(connection){

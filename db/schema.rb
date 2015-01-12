@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20141230164250) do
     t.text     "user_image"
     t.float    "price"
     t.string   "role"
+    t.integer  "follow_count"
     t.integer  "prediction_id"
     t.integer  "tip_id"
   end

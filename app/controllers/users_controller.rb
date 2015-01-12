@@ -15,7 +15,8 @@ class UsersController < ApplicationController
 
   # Method to work out the win percentage of a user which be used on the output page
   def calc_win_percentage
-    @users.map do |user|
+    users = User.all
+    users.map do |user|
       tips = user.tips.count.to_f
       tips_won = user.tips.where({:won => true}).count.to_f 
       if tips > 0
@@ -68,18 +69,51 @@ class UsersController < ApplicationController
 
   # Method to get all of the tipsters on the website so this can be used for the leadertable board
   def tipsters
+    nully
     @tipsters = User.where(role: "Tipster").to_json(:include => :user_connections)# the include is needed for the following button
     render json: { data: @tipsters }
   end
 
+  def nully
+    @connections = UserConnection.all
+    @connections.map do |connection|
+
+      if current_user.id != connection.customer_id && connection.following != true
+        connection.following = nil
+      elsif current_user.id == connection.customer_id && connection.following != true
+        connection.following = false
+      end
+      connection.save
+    end
+  end
+
+  def rotated_tipsters
+    @rotatedTipsters = User.where(role: "Tipster").map do |tipster|
+      tipster.user_connections.rotate(-1)
+    end
+  end
+
   # Method find a user for the their profile page
   def users_profile
+    follow_count
     @usersProfile = User.find(params[:id]).to_json(:include => :user_connections)
     render json: { data: @usersProfile }
   end
 
+  def follow_count
+    user = User.find(params[:id])  
+    user.user_connections.each do |connection| 
+      @follow_count = 0
+      if connection.following == true 
+        @follow_count += 1
+      end
+    end
+    user[:follow_count] = @follow_count
+    user.save
+  end
+
   def profile_tips 
-    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}])
+    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}, :predictions =>{:include => {:result =>{:only => :betWon}}}])
     render json: { data: @userTips }.to_json
   end
 

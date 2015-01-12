@@ -13,7 +13,7 @@ class ResultData
 
     def update_results_table
       @data.map do |fixture|
-        if fixture["date"].to_date >= Date.today && fixture["goalsHomeTeam"] != -1
+        if fixture["date"].to_date <= Date.today && fixture["goalsHomeTeam"] != -1
         @newFixture = Prediction.where(fixture_id: fixture["id"])
         @newFixture.each do |newFixture|
           newFixture.result.update_attributes(goalsHomeTeam: fixture["goalsHomeTeam"], goalsAwayTeam: fixture["goalsAwayTeam"])

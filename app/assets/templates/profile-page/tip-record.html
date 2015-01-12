@@ -20,7 +20,7 @@
       <td>
         <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
           <li>
-            {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}}
+            {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}} <span ng-if="prediction.result.betWon == true">Won</span><span ng-if="prediction.result.betWon == false">Lost</span><span ng-if="prediction.result.betWon == nil">Pending</span>
           </li>
         </ul>
         <p>

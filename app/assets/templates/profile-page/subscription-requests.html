@@ -1,7 +1,7 @@
 <div>
   <h3>Subscription Requests</h3>
   <div ng-repeat="f in follower | limitTo : 3">
-    <div ng-if="f.following == false && f.customer_id != userProfile.id">
+    <div ng-if="f.following == null && f.customer_id != userProfile.id">
       <p><a href="/betip/profile/{{f.customer_id}}">{{f.customer_name}}</a></p>
       <button ng-click="acceptSubscription(f)" class="btn btn-success">Accept</button>
       <button ng-click="rejectSubscription(f)" class="btn btn-danger">Reject</button>

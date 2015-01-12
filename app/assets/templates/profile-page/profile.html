@@ -1,12 +1,13 @@
 <div class="profile-page">
 
-  <h2>{{userProfile.name}}</h2>
+  <h2>{{ userProfile.name }}</h2>
 
   
-  <img src="{{userProfile.user_image.thumb.url}}">
+  <img src="{{ userProfile.user_image.thumb.url }}">
 
-  <h4><b>Win Percentage:   </b>{{userProfile.win_percentage}}%</h4>
-  <h4><b>Followers: </b></h4>
+  <h4><b>Win Percentage:   </b>{{ userProfile.win_percentage }}%</h4>
+  <h4><b>Price: </b> {{ userProfile.price | currency:'£' }}</h4>
+  <h4><b>Followers: </b> {{ userProfile.follow_count }}</h4>
     
   <div ng-if="userProfile.user_connections[0].following == null && userProfile.id != currentUser.id"><button class="btn btn-success follow-button" ng-click="subscribeTips(userProfile)" >Follow</button></div>
   <h4 ng-if="userProfile.user_connections[0].following == false && userProfile.user_connections[0].customer_id == currentUser.id">Pending</h4>

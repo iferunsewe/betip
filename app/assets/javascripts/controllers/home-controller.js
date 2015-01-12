@@ -24,6 +24,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', '$route', fun
 
   //using controller action 'followed tips' to get the tips of a tipster that a customer follows
   $http.get('/users/followed_tipsters.json').success(function(data){
+    console.log(data.data)
     $scope.followedTipsters = data.data
     angular.forEach($scope.followedTipsters, function(tipster){
       $http.post('/users/profile_tips.json', {

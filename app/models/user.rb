@@ -3,7 +3,7 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:google_oauth2, :facebook]
 
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :user_image, :prediction_id, :price, :role, :tip_id, :win_percentage, :user_connections
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_me, :user_image, :prediction_id, :price, :role, :tip_id, :win_percentage, :user_connections, :follow_count
 
   #associations to conduct the following relationship between tipsters and their customers
   has_many(:user_connections, :foreign_key => :tipster_id, :dependent => :destroy)
