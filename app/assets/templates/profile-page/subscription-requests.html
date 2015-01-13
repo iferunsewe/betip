@@ -1,5 +1,5 @@
 <div>
-  <h3>Subscription Requests</h3>
+  <h2>Subscription Requests</h2>
   <div ng-repeat="f in follower | limitTo : 3">
     <div ng-if="f.following == null && f.customer_id != userProfile.id">
       <p><a href="/betip/profile/{{f.customer_id}}">{{f.customer_name}}</a></p>

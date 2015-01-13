@@ -72,40 +72,12 @@ app.controller('profileController', ['$scope','$routeParams','$http', '$route', 
           
           $scope.tipsters = angular.fromJson(data.data) //now the data is objects of user connections
         });
-        // $http.post('/users/check_following', {
-        //   tipster: {
-        //     tipster_id: tipster.id
-        //   }
-        // }).success(function(data){
-        //   console.log(angular.fromJson(data.data))
-        // $scope.checkedTipster = angular.fromJson(data.data)
-        //   if($scope.checkedTipster.user_connections.length == 1){
-        //     $scope.checkedTipsterConnections = $scope.checkedTipster[0]
-        //   } else {
-        //     $scope.checkedTipsterConnections = $scope.checkedTipster.user_connections[$scope.checkedTipster.user_connections.length - 1]
-        //   }
-        //   console.log($scope.checkedTipsterConnections)
-        // });
         $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
           $scope.userProfile = angular.fromJson(data.data)
         });
       })
     });
   }
-
-  // $scope.subscribeTips = function(tipster, userProfile){
-  //   $http.post('/user_connections.json', {
-  //     user_connection: {
-  //       tipster_id: tipster.id || userProfile.id, 
-  //       tipster_name: tipster.name || userProfile.name, 
-  //       customer_id: $scope.currentUser.id, 
-  //       customer_name: $scope.currentUser.name, 
-  //       following: $scope.followingDefault
-  //     }
-  //   }).success(function(data){
-
-  //   })
-  // });
 
   //accepting the subscription request
   $scope.acceptSubscription = function(connection){

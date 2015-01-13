@@ -78,7 +78,6 @@ class UsersController < ApplicationController
   def nully
     @connections = UserConnection.all
     @connections.map do |connection|
-
       if current_user.id != connection.customer_id && connection.following != true
         connection.following = nil
       elsif current_user.id == connection.customer_id && connection.following != true
@@ -88,11 +87,6 @@ class UsersController < ApplicationController
     end
   end
 
-  def rotated_tipsters
-    @rotatedTipsters = User.where(role: "Tipster").map do |tipster|
-      tipster.user_connections.rotate(-1)
-    end
-  end
 
   # Method find a user for the their profile page
   def users_profile

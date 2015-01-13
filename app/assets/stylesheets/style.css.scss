@@ -191,7 +191,8 @@ html{
         margin-top: 7%;
         img{
           border-radius: 100%;
-          margin-left: 33%;
+          display: block;
+          margin: 0 auto;
           height: 223px;
           width: 223px;
         } 
@@ -200,7 +201,7 @@ html{
           border-bottom: 1px solid black;
         }
         h4{
-          margin-left: 35%;
+          text-align: center;
         }
         .follow-button{
           margin-left: 44%;
