@@ -22,6 +22,8 @@ class UsersController < ApplicationController
       if tips > 0
         win_percentag = (tips_won/tips)*100
         user[:win_percentage] = win_percentag
+      elsif user.win_percentage > 0 
+        user[:win_percentage] = user.win_percentage
       else
         user[:win_percentage] = 0
       end

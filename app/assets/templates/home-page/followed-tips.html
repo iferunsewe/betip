@@ -2,14 +2,14 @@
   <h2>Followed tips</h2>
 
   <div class="table-responsive">
-    <table class="table table-hover" ng-repeat="user in followedTipsters">
+    <table class="table table-hover" ng-repeat="user in followedTipsters" ng-if="user.following == true">
 
       <tr>
         <th>User</th>
         <th>Tips</th>
       </tr>
       
-      <tr ng-if="user.following == true">
+      <tr>
         <td><a href="/betip/profile/{user.id}}">{{user.name}}</a></td>
         <td>
           <table class="table table-bordered" ng-repeat="tip in followedTips">
