@@ -3,12 +3,12 @@
 # t3 = Tip.create!(bookies: "Betfair", odds: 4.5, comment: "Neutra blog actually Kickstarter, Helvetica disrupt sriracha Brooklyn retro selfies chambray tattooed typewriter. Beard sartorial readymade, flannel selfies mustache vinyl.")
 # t4 = Tip.create!(bookies: "888.com", odds: 5.0, comment: "Mlkshk Echo Park pop-up street art, next level hoodie jean shorts wayfarers Brooklyn Intelligentsia. Roof party farm-to-table gluten-free, pour-over hashtag banjo Etsy Tumblr.")
 
-u1 = User.create!(name: "Ari Gold", email: "arigold@email.com", password: "password", role: "Tipster", price: 12.00, user_image: File.open(File.join(Rails.root,"/app/assets/images/arigold.jpg")))
-u2 = User.create!(name: "Vincent Chase", email: "vincentchase@email.com", password: "password", role: "Tipster", price: 5.00, user_image: File.open(File.join(Rails.root,"/app/assets/images/vinnychase.jpg")))
+u1 = User.create!(name: "Ari Gold", email: "arigold@email.com", password: "password", role: "Tipster", price: 12.00, win_percentage: 95, user_image: File.open(File.join(Rails.root,"/app/assets/images/arigold.jpg")))
+u2 = User.create!(name: "Vincent Chase", email: "vincentchase@email.com", password: "password", role: "Tipster", win_percentage: 86, price: 5.00, user_image: File.open(File.join(Rails.root,"/app/assets/images/vinnychase.jpg")))
 u3 = User.create!(name: "Johnny Drama", email: "johnnydrama@email.com", password: "password", role: "Customer", user_image:  File.open(File.join(Rails.root,"/app/assets/images/johnnydrama.jpg")))
 u4 = User.create!(name: "Eric Murphy", email: "ericmurphy@email.com", password: "password", role: "Customer", user_image: File.open(File.join(Rails.root,"/app/assets/images/ericmurphy.jpg")))
-u5 = User.create!(name: "Danny Dyer", email: "dannydyer@email.com", password: "password", role: "Tipster", price: 4.00, user_image: File.open(File.join(Rails.root,"/app/assets/images/dannydyer.jpg")))
-u6 = User.create!(name: "Mark Corrigan", email: "markcorrigan@email.com", password: "password", role: "Tipster", price: 9.00, user_image: File.open(File.join(Rails.root, "/app/assets/images/markcorrigan.jpg")))
+u5 = User.create!(name: "Danny Dyer", email: "dannydyer@email.com", password: "password", role: "Tipster", price: 4.00, win_percentage: 77, user_image: File.open(File.join(Rails.root,"/app/assets/images/dannydyer.jpg")))
+u6 = User.create!(name: "Mark Corrigan", email: "markcorrigan@email.com", password: "password", role: "Tipster", price: 9.00, win_percentage: 85, user_image: File.open(File.join(Rails.root, "/app/assets/images/markcorrigan.jpg")))
 
 tb1 = TypeOfBet.create!(name: "Home Win")
 tb2 = TypeOfBet.create!(name: "Away Win")
