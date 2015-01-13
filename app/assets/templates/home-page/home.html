@@ -2,12 +2,6 @@
   <h2>Hot Tipsters</h2>
 
   <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
-    <!-- Indicators -->
-    <ol class="carousel-indicators">
-      <li data-target="#carousel-example-generic" data-slide-to="0" class="active"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="1"></li>
-      <li data-target="#carousel-example-generic" data-slide-to="2"></li>
-    </ol>
    
     <!-- Wrapper for slides -->
 
@@ -16,16 +10,22 @@
         <h3><a href="/betip/profile/{{first.id}}">{{ first.name }}</a></h3>
         <img class="carousel-image" src="{{first.user_image.url}}">
         <p><b>Win Percentage: </b>{{ first.win_percentage }}%</p>
+        <p><b>Price: </b> {{ first.price | currency:'£' }}</p>
+        <p><b>Followers: </b> {{ first.follow_count }}</p>
       </div>
       <div class="item carousel-active">
         <h3><a href="/betip/profile/{{second.id}}">{{ second.name }}</a></h3>
         <img class="carousel-image" src="{{second.user_image.thumb.url}}">
         <p><b>Win Percentage: </b>{{ second.win_percentage }}%</p>
+        <p><b>Price: </b> {{ second.price | currency:'£' }}</p>
+        <p><b>Followers: </b> {{ second.follow_count }}</p>
       </div>
       <div class="item carousel-active">
         <h3><a href="/betip/profile/{{third.id}}">{{ third.name }}</a></h3>
         <img class="carousel-image" src="{{third.user_image.thumb.url}}">
         <p><b>Win Percentage: </b>{{ third.win_percentage }}%</p>
+        <p><b>Price: </b> {{ third.price | currency:'£' }}</p>
+        <p><b>Followers: </b> {{ third.follow_count }}</p>
       </div>
     </div>
    

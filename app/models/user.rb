@@ -54,4 +54,11 @@ class User < ActiveRecord::Base
       end
     end
   end
+
+  before_create :default_follower_count
+
+  private
+  def default_follower_count
+    self.follow_count = 0
+  end
 end

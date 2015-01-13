@@ -52,7 +52,8 @@ class UsersController < ApplicationController
 
   # Method to find the top three tipsters on the website to be shown in the carousel on the homepage
   def top_three
-    @top_3 = User.order('win_percentage DESC').limit(3)
+    @tipster = User.where(role: "Tipster")
+    @top_3 = @tipster.order('win_percentage DESC').limit(3)
     render json: { data: @top_3 }.to_json
   end
 
