@@ -5,6 +5,7 @@ app.controller('profileController', ['$scope','$routeParams','$http', '$route', 
 
 //getting all of the info for the users profile page, have to delve even deeper to get their tips, the predictions on the tip and the type of bet of the prediction.
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
+    console.log(angular.fromJson(data.data))
     $scope.userProfile = angular.fromJson(data.data)
     $http.post('/users/profile_tips.json', {
       tip: { 

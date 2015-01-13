@@ -31,6 +31,4 @@
     = f.label :user_image
     %br
     = f.file_field :user_image
-  .actions 
-    = f.submit "Sign Up" 
-= render "devise/shared/links"
+  = f.submit "Sign Up", class: "btn btn-primary"

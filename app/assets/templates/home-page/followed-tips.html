@@ -1,38 +1,40 @@
 <div class="followed-tips">
   <h2>Followed tips</h2>
 
-  <table class="table table-bordered" ng-repeat="user in followedTipsters">
+  <div class="table-responsive">
+    <table class="table table-hover" ng-repeat="user in followedTipsters">
 
-    <tr>
-      <th>User</th>
-      <th>Tips</th>
-    </tr>
-    
-    <tr>
-      <td><a href="/betip/profile/{user.id}}">{{user.name}}</a></td>
-      <td>
-        <table class="table table-bordered" ng-repeat="tip in followedTips">
-          <tr>
-            <th>Date Created</th>
-            <th class="profile-tip-bookies">Best Bookies</th>
-            <th>Predictions</th>
-          </tr>
-          <tr>
-            <td>{{ tip.created_at | date : "dd/MM/yy" }}</td>
-            <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
-            <td>
-              <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
-                <li>
-                  {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}}
-                </li>
-              </ul>
-              <br/>
-              <p>
-                {{tip.comment}}
-              </p>
-            </td>
-          </tr>
-        </table>
+      <tr>
+        <th>User</th>
+        <th>Tips</th>
+      </tr>
+      
+      <tr>
+        <td><a href="/betip/profile/{user.id}}">{{user.name}}</a></td>
+        <td>
+          <table class="table table-bordered" ng-repeat="tip in followedTips">
+            <tr>
+              <th>Date Created</th>
+              <th class="profile-tip-bookies">Best Bookies</th>
+              <th>Predictions</th>
+            </tr>
+            <tr>
+              <td>{{ tip.created_at | date : "dd/MM/yy" }}</td>
+              <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
+              <td>
+                <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
+                  <li>
+                    {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}}
+                  </li>
+                </ul>
+                <br/>
+                <p>
+                  {{tip.comment}}
+                </p>
+              </td>
+            </tr>
+          </table>
+        </div>
       </td>
     </tr>
   </table>

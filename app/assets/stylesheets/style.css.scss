@@ -50,7 +50,7 @@ html{
         height: 100%;
         border-bottom: 5px solid #1c90bc;
         .modal{
-          font-family: 'Open Sans Condensed', sans-serif;
+          font-family: 'Josefin Sans', sans-serif;
           .modal-header{
             background: black;
             border-bottom: 5px solid #1c90bc;
@@ -219,6 +219,7 @@ html{
         border-radius: 5%;
         padding: 5%;
         margin-bottom: 5%;
+        box-shadow: 0 0 7px -1px #000;
         ul{
           padding-left: 0;
         }

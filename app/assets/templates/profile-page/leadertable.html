@@ -1,27 +1,29 @@
 <div class="leadertable">
   <h2>Leadertable</h2>
 
-  <table class="table table-hover">
-    <tr>
-      <th></th>
-      <th>Name</th>
-      <th>Win Percentage</th>
-      <th>Price</th>
-      <th>Follow</th>
-    </tr>
-    <tr ng-repeat="tipster in tipsters | orderBy: 'win_percentage': reverse=true">
-      <td><img src="{{ tipster.user_image.leadertable.url }}" alt="tipster image" class="leadertable-image"></td>
-      <td><a href="/betip/profile/{{tipster.id}}">{{tipster.name}}</a></td>
-      <td>{{tipster.win_percentage}}%</td>
-      <td>{{tipster.price | currency:'£' }}</td>
-      <div >
-      <div>
-        <td ng-if="tipster.user_connections[0].following == null && tipster.id != currentUser.id"><button 
-          ng-click="subscribeTips(tipster)"
-          class="btn btn-success">Follow</button></td>
-        <td ng-if="tipster.user_connections[0].following == false && tipster.id != currentUser.id">Pending</td>
-        <td ng-if="tipster.user_connections[0].following == true && tipster.id != currentUser.id">Following</td>
-      </div>
-    </tr>
-  </table>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Win Percentage</th>
+        <th>Price</th>
+        <th>Follow</th>
+      </tr>
+      <tr ng-repeat="tipster in tipsters | orderBy: 'win_percentage': reverse=true">
+        <td><img src="{{ tipster.user_image.leadertable.url }}" alt="tipster image" class="leadertable-image"></td>
+        <td><a href="/betip/profile/{{tipster.id}}">{{tipster.name}}</a></td>
+        <td>{{tipster.win_percentage}}%</td>
+        <td>{{tipster.price | currency:'£' }}</td>
+        <div >
+        <div>
+          <td ng-if="tipster.user_connections[0].following == null && tipster.id != currentUser.id"><button 
+            ng-click="subscribeTips(tipster)"
+            class="btn btn-success">Follow</button></td>
+          <td ng-if="tipster.user_connections[0].following == false && tipster.id != currentUser.id">Pending</td>
+          <td ng-if="tipster.user_connections[0].following == true && tipster.id != currentUser.id">Following</td>
+        </div>
+      </tr>
+    </table>
+  </div>
 </div>

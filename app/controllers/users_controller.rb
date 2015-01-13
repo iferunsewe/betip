@@ -102,9 +102,9 @@ class UsersController < ApplicationController
   end
 
   def follow_count
-    user = User.find(params[:id])  
+    user = User.find(params[:id])
+    @follow_count = 0
     user.user_connections.each do |connection| 
-      @follow_count = 0
       if connection.following == true 
         @follow_count += 1
       end

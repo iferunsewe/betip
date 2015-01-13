@@ -1,35 +1,37 @@
 <div>
   <h3>Tip Record</h3>
-  <table class="table table-bordered" ng-repeat="tip in userTips | orderBy: 'created_at': reverse=true">
+  <div class="table-responsive">
+    <table class="table table-hover" ng-repeat="tip in userTips | orderBy: 'created_at': reverse=true">
 
-    <tr>
-      <th class="profile-tip-date">Date</th>
-      <th class="profile-tip-bookies">Best Bookies</th>
-      <th>Predictions</th>
-      <th>Status</th>
-    </tr>
+      <tr>
+        <th class="profile-tip-date">Date</th>
+        <th class="profile-tip-bookies">Best Bookies</th>
+        <th>Predictions</th>
+        <th>Status</th>
+      </tr>
 
-    <tr>
-      <td>
-        {{ tip.created_at | date : "dd/MM/yy"}}
-        <br>
-        <br>
-        <!-- <button class="btn btn-danger" ng-click="deleteTip(tip)">Delete</button> -->
-      </td>
-      <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
-      <td>
-        <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
-          <li>
-            {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}} <span ng-if="prediction.result.betWon == true">Won</span><span ng-if="prediction.result.betWon == false">Lost</span><span ng-if="prediction.result.betWon == nil">Pending</span>
-          </li>
-        </ul>
-        <p>
-          {{tip.comment}}
-        </p>
-      </td>
-      <td ng-if="tip.won == true">Won</td>
-      <td ng-if="tip.won == false">Lost</td>
-      <td ng-if="tip.won == nil">Pending</td>
-    </tr>
-  </table>
+      <tr>
+        <td>
+          {{ tip.created_at | date : "dd/MM/yy"}}
+          <br>
+          <br>
+          <!-- <button class="btn btn-danger" ng-click="deleteTip(tip)">Delete</button> -->
+        </td>
+        <td>{{ tip.bookies }} offer {{ tip.odds | number : 2 }}</td>
+        <td>
+          <ul class="predictions-data" ng-repeat="prediction in tip.predictions">
+            <li>
+              {{ prediction.date | date : "dd/MM/yy H:mm" }} - {{ prediction.homeTeam }} vs {{ prediction.awayTeam}} | {{prediction.type_of_bet.name}} <span ng-if="prediction.result.betWon == true">Won</span><span ng-if="prediction.result.betWon == false">Lost</span><span ng-if="prediction.result.betWon == nil">Pending</span>
+            </li>
+          </ul>
+          <p>
+            {{tip.comment}}
+          </p>
+        </td>
+        <td ng-if="tip.won == true">Won</td>
+        <td ng-if="tip.won == false">Lost</td>
+        <td ng-if="tip.won == nil">Pending</td>
+      </tr>
+    </table>
+  </div>
 </div>
