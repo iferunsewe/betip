@@ -5,30 +5,25 @@
 = form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f|
   = devise_error_messages!
   .field
-    = f.label :role
     %br/
-    = f.select :role, options_for_select(["Tipster", "Customer"])
+    = f.select :role, options_for_select(["Choose Role" ,"Tipster", "Customer"]), class: "form-control"
   .field
-    = f.label :name
-    %br/
-    = f.text_field :name, autofocus: true
+    = f.text_field :name, autofocus: true, class: "form-control", placeholder: "Name"
   .field
-    = f.label :email
-    %br/
-    = f.email_field :email
+    = f.email_field :email, class: "form-control", placeholder: "Email"
   .field
-    = f.label :password
     - if @validatable
       %em
         (#{@minimum_password_length} characters minimum)
-    %br/
-    = f.password_field :password, autocomplete: "off"
+    = f.password_field :password, autocomplete: "off", class: "form-control", placeholder: "Password"
   .field
-    = f.label :password_confirmation
-    %br/
-    = f.password_field :password_confirmation, autocomplete: "off"
+    = f.password_field :password_confirmation, autocomplete: "off", class: "form-control", placeholder: "Password Confirmation"
   .field
     = f.label :user_image
     %br
     = f.file_field :user_image
+  .set_price
+    .field      
+      = f.number_field :price, class: "form-control price", :step => 0.01, placeholder: "Set Price (£)"
+      %br
   = f.submit "Sign Up", class: "btn btn-primary"

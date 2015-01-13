@@ -63,6 +63,7 @@ class UsersController < ApplicationController
       follow = Hash.new
       follow[:id] = connection.tipster_id
       follow[:name] = connection.tipster_name
+      follow[:following] = connection.following
       follow
     end
     render json: { data: @followedTipsters }.to_json

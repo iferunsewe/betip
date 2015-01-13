@@ -19,7 +19,7 @@ html{
         }
       }
       a.betip{
-        letter-spacing: 8px;
+        letter-spacing: 5px;
 
       }
       h3{
@@ -33,15 +33,25 @@ html{
       a:visited{
         color: white;
       }
-      li.dropdown{
-        a.dropdown-toggle{
-          margin-top: -24%;
+      ul.navbar-right{
+        width: 18%;
+        li.nav-image{
+          margin-right: 5%;
+          margin-top: 4%;
+          img{
+            border-radius: 100%;
+          }
         }
-        ul.dropdown-menu{
-          margin-top: -26%;
-          background-color: black;
-          color: white;
-          letter-spacing: 2px;
+        li.dropdown{
+          a.dropdown-toggle{
+            margin-top: -24%;
+          }
+          ul.dropdown-menu{
+            margin-top: -26%;
+            background-color: black;
+            color: white;
+            letter-spacing: 2px;
+          }
         }
       }
       background-color: black;
@@ -55,6 +65,14 @@ html{
             background: black;
             border-bottom: 5px solid #1c90bc;
             color: white;
+          }
+          .modal-body{
+            .form-control{
+              width: 36%;
+            }
+            .form-control.price{
+              width: 20%;
+            }
           }
         }
       }
@@ -174,6 +192,15 @@ html{
           background-image:none;
         }
       }
+      .followed-tips{
+        a{
+          color: black;
+        }
+        a:hover{
+          color: white;
+          background-color: transparent;
+        }
+      }
       .leadertable{
         margin-top: 7%;
         .leadertable-image{
@@ -186,11 +213,27 @@ html{
           color: white;
           background-color: transparent;
         }
+        td{
+          .following{
+            color: white;
+            width: 50%;
+            background-color: #337ab7;
+            border-radius: 5%;
+            text-align: center;
+          }
+          .pending{
+            color: white;
+            width: 50%;
+            background-color: #e07600;
+            border-radius: 5%;
+            text-align: center;
+          }
+        }
       }
       .profile-page{
         margin-top: 7%;
         img{
-          border-radius: 100%;
+          border-radius: 5%;
           display: block;
           margin: 0 auto;
           height: 223px;

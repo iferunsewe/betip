@@ -20,8 +20,8 @@
           <td ng-if="tipster.user_connections[0].following == null && tipster.id != currentUser.id"><button 
             ng-click="subscribeTips(tipster)"
             class="btn btn-success">Follow</button></td>
-          <td ng-if="tipster.user_connections[0].following == false && tipster.id != currentUser.id">Pending</td>
-          <td ng-if="tipster.user_connections[0].following == true && tipster.id != currentUser.id">Following</td>
+          <td ng-if="tipster.user_connections[0].following == false && tipster.id != currentUser.id"><div class="pending">Pending</div></td>
+          <td ng-if="tipster.user_connections[0].following == true && tipster.id != currentUser.id"><div class="following">Following</div></td>
         </div>
       </tr>
     </table>

@@ -6,6 +6,7 @@
           <li><h1><a href="/" class="betip">betip</a></h1></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
+          <li class="nav-image"><img src="<%= current_user.user_image.navbar.url%>"</li>
           <li><h3><a href="/betip/profile/<%= current_user.id %>" class="user-name"><%= current_user.name %></a></h3></li>
           <li class="dropdown">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><span class="caret"></span></a>
