@@ -5,13 +5,13 @@ app.controller('profileController', ['$scope','$routeParams','$http', '$route', 
 
 //getting all of the info for the users profile page, have to delve even deeper to get their tips, the predictions on the tip and the type of bet of the prediction.
   $http.get('/users/users_profile/' + $routeParams.id + '.json').success(function(data){
-    console.log(angular.fromJson(data.data))
     $scope.userProfile = angular.fromJson(data.data)
     $http.post('/users/profile_tips.json', {
       tip: { 
         user_id: $scope.userProfile.id
       }
     }).success(function(data){ //tip can be anything here but has to be the same as the first params bracket in the user controller action 'profile_tips'
+    console.log(angular.fromJson(data.data))
       $scope.userTips = angular.fromJson(data.data)
       //Json data coming back from the controller was being passed as a string, so i used the angular function angular.fromJson() to parse the string back into an object and stored it in $scope.userTips to make it accessible.
       angular.forEach($scope.userTips, function(tip){
@@ -41,13 +41,11 @@ app.controller('profileController', ['$scope','$routeParams','$http', '$route', 
 
   //get method to get all of the user connections for a subscription request
   $http.get('/user_connections/subscription_requests').success(function(response){
-    console.log(response)
     $scope.follower = response.data; 
   });
 
   //getting the tipster information, data was passed back as a string so had to parse the data to retrieve the objects
   $http.get('/users/tipsters').success(function(data) {
-    console.log(angular.fromJson(data.data))
     $scope.tipsters = angular.fromJson(data.data) //had to use angular.fromJson as data was coming back as a string.
   });
 

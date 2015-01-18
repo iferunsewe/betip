@@ -110,7 +110,8 @@ class UsersController < ApplicationController
   end
 
   def profile_tips 
-    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}, :predictions =>{:include => {:result =>{:only => :betWon}}}])
+    # @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => {:type_of_bet => {:only => :name}}}, :predictions =>{:include => {:result =>{:only => :betWon}}}])
+    @userTips = Tip.where(user_id: params[:tip][:user_id]).to_json(:include => [:predictions => {:include => [:type_of_bet, :result]}])
     render json: { data: @userTips }.to_json
   end
 
