@@ -1,24 +1,24 @@
 class ResultData
 
-    attr_accessor :data
+  attr_accessor :data
 
-    URL = "http://www.football-data.org/soccerseasons/354/fixtures"
+  URL = "http://www.football-data.org/soccerseasons/354/fixtures"
 
-    def initialize
-      response = Net::HTTP.get URI(URL)
+  def initialize
+    response = Net::HTTP.get URI(URL)
 
-      @data  = JSON(response)
-      update_results_table 
-    end
+    @data  = JSON(response)
+    update_results_table 
+  end
 
-    def update_results_table
-      @data.map do |fixture|
-        if fixture["date"].to_date <= Date.today && fixture["goalsHomeTeam"] != -1
+  def update_results_table
+    @data.map do |fixture|
+      if fixture["date"].to_date <= Date.today && fixture["goalsHomeTeam"] != -1
         @newFixture = Prediction.where(fixture_id: fixture["id"])
         @newFixture.each do |newFixture|
           newFixture.result.update_attributes(goalsHomeTeam: fixture["goalsHomeTeam"], goalsAwayTeam: fixture["goalsAwayTeam"])
-        end
-        @newFixture.save
+          newFixture.save
+        end 
       end
     end
   end

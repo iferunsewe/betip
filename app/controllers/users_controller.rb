@@ -35,7 +35,6 @@ class UsersController < ApplicationController
   def create
     # run default version defined in Devise::RegistrationsController
     super
-
     # then add our custom logic
     @user.role = "user"
     @user.save!
