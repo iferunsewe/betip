@@ -6,7 +6,6 @@ class UserConnections < ActiveRecord::Migration
       t.string :tipster_name
       t.string :customer_name
       t.boolean :following
-
       t.timestamps
     end
   end

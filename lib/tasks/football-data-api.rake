@@ -1,31 +1,31 @@
 class FootballData
 
-    attr_accessor :data
+  attr_accessor :data
 
-    URL = "http://www.football-data.org/soccerseasons/354/fixtures"
+  URL = "http://www.football-data.org/alpha/soccerseasons/354/fixtures"
 
-    def initialize
-      response = Net::HTTP.get URI(URL)
+  def initialize
+    response = Net::HTTP.get URI(URL)
 
-      @data  = JSON(response)
-      insert_into_prediction_table  
-    end
+    @data  = JSON(response)
+    insert_into_prediction_table  
+  end
 
-    def insert_into_prediction_table
-      @data.map do |fixture|
-        if fixture["date"].to_date > Date.today
-          @newFixture = Prediction.create({
-            fixture_id: fixture["id"],
-            date: fixture["date"],
-            homeTeam: fixture["homeTeam"],
-            awayTeam: fixture["awayTeam"]
-            })
-          @newFixture.build_result
-          @newFixture.save
-        end
+  def insert_into_prediction_table
+    @data["fixtures"].map do |fixture|
+      if fixture["date"].to_date > Date.today
+        @newFixture = Prediction.first_or_create({
+          fixture_id: fixture["id"],
+          date: fixture["date"],
+          homeTeam: fixture["homeTeamName"],
+          awayTeam: fixture["awayTeamName"]
+          })
+        @newFixture.build_result
+        @newFixture.save
       end
     end
   end
+end
 
 
 desc "Pulling all of the fixtures from the footballdata.org API"

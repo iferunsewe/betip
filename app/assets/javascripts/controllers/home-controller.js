@@ -32,6 +32,7 @@ app.controller('homeController', ['$scope','$routeParams','$http', '$route', fun
           user_id: tipster.id
         }
       }).success(function(data){
+        console.log(angular.fromJson(data.data))
         $scope.followedTips = angular.fromJson(data.data)
       });
     });
