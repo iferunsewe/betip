@@ -14,7 +14,7 @@ class FootballData
   def insert_into_prediction_table
     @data["fixtures"].map do |fixture|
       if fixture["date"].to_date > Date.today
-        @newFixture = Prediction.first_or_create({
+        @newFixture = Prediction.create({
           fixture_id: fixture["id"],
           date: fixture["date"],
           homeTeam: fixture["homeTeamName"],
