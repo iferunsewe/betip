@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="Rails betip: development" uuid="f7b0a99e-6109-4b4b-a1e5-a2c48054f1f3">
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails betip: test" uuid="8992b0eb-a6c0-4b95-88b6-cc9f918ab56d">
+      <first-sync>true</first-sync>
+    </data-source>
+    <data-source name="Rails betip: production" uuid="fffda32b-6c04-4dd7-a442-a1cb9b66766c">
+      <first-sync>true</first-sync>
+    </data-source>
+  </component>
+</project>
