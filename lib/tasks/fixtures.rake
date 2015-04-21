@@ -30,5 +30,7 @@ end
 
 desc "Pulling all of the fixtures from the footballdata.org API"
 task fixtures: :environment do 
-  FootballData.new
+  if Time.now.monday? 
+    FootballData.new
+  end
 end

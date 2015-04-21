@@ -27,5 +27,7 @@ end
 
 desc "Updating the results"
 task results: :environment do 
-  ResultData.new
+  if Time.now.tuesday?
+    ResultData.new
+  end
 end

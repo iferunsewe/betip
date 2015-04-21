@@ -23,21 +23,21 @@ group :test do
   gem 'capybara'
 end
 
-gem 'carrierwave', '0.9.0'
+gem 'carrierwave'
 gem 'ransack'
 gem 'cancancan', '~> 1.9'
 gem "letter_opener"
 gem 'omniauth-google-oauth2'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
-gem "fog", "~> 1.3.1"
+gem "fog"
 gem 'haml-rails'
 gem 'devise'
 gem 'twitter-bootstrap-rails'
 gem 'therubyracer'
 gem 'less-rails'
 gem 'rmagick'
-gem 'angularjs-rails'
+gem 'angularjs-rails', "~> 1.3.3"
 gem 'rails_12factor'
 gem "sass", "~> 3.2.5"
 gem 'ngannotate-rails'
